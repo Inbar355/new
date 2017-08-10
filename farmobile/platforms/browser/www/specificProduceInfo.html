@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    -->
+    <meta name="viewport" content="initial-scale=1, width = device-width, height= device-height">
+    <link rel="stylesheet" href="css/personalInfoCSS.css">
+    <link rel="stylesheet" href="css/sideAndUpperMenuCSS.css">
+    <link href='http://serve.fontsproject.com/css?family=Felix007:400'rel='stylesheet' type='text/css'>
+    <script src="js/jquery-2.0.3.min.js"></script>
+    <script src="js/sideAndUpperMenuScript.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/specificProdInfo.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
+    <table>
+        <tr>
+            <td><img id="welcomeImg" src="img/face.jpg">
+                <a id="userName"></a></td>
+        </tr>
+        <tr>
+            <td><a href="mainPage.html">פירוט נקודות מכירה  <img src="img/fruit_car.jpg"></a></td>
+        </tr>
+        <tr>
+            <td><a href="protestInfo.html">על המחאה  <img src="img/protest_sign.jpg"></a></td>
+        </tr>
+        <tr>
+            <td><a href="farmersInfoGeneral.html">אודות החקלאים  <img src="img/farmer.jpg"></a></td>
+        </tr>
+        <tr>
+            <td><a href="produceInfoGeneral.html">אודות התוצרת  <img src="img/fruits.jpg"></a></td>
+        </tr>
+        <tr>
+            <td><a href="loginAndSign.html">התחבר/הרשם למועדון לקוחות <img src="img/login.png"></a></td>
+        </tr>
+        <tr>
+            <td><a href="TermsOfUse.html">תנאי שימוש  <img src="img/terms.jpg"></a></td>
+        </tr>
+		<tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<br><br><br><br>
+<div align="right">
+    <div class="col-xs-2"></div>
+    <div class="col-xs-8">
+        <h1><span class="font label label-primary">: על התוצרת</span></h1>
+    </div>
+</div>
+<button class="btn btn-block invisibleRow" disabled></button>
+<div align="right">
+    <div class="col-xs-7">
+        <button id="prodName" class="inputBtn btn-block" disabled></button>
+    </div>
+    <div class="col-xs-5">
+        <button type="button" class="newFont btn-block" disabled>: שם התוצרת</button>
+    </div>
+</div>
+<button class="btn btn-block invisibleRow" disabled></button>
+<div align="right">
+    <div class="col-xs-7">
+        <button id="pricePerPack"class="inputBtn btn-block" disabled></button>
+    </div>
+    <div class="col-xs-5">
+        <button type="button" class="newFont btn-block" disabled>: מחיר לאריזה</button>
+    </div>
+</div>
+<button class="btn btn-block invisibleRow" disabled></button>
+<div align="right">
+    <div class="col-xs-7">
+        <button id="weightPerPack"class="inputBtn btn-block" disabled></button>
+    </div>
+    <div class="col-xs-5">
+        <button type="button" class="newFont btn-block" disabled>: משקל</button>
+    </div>
+</div>
+<button class="btn btn-block invisibleRow" disabled></button>
+<div align="right">
+    <div class="col-xs-7">
+        <button id="extraInfo"class="inputBtn btn-block" disabled></button>
+    </div>
+    <div class="col-xs-5">
+        <button type="button" class="newFont btn-block" id="extraInfoTitle" disabled>: מידע נוסף</button>
+    </div>
+</div>
+<button class="btn btn-block invisibleRow" disabled></button>
+<div class="col-xs-5"></div>
+    <img id="productPic">
+</div>
+</body>
+</html>

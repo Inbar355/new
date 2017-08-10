@@ -1,0 +1,68 @@
+.inputBtn{
+    background-color: #b1b1b1;
+    color: white;
+    opacity: 0.9;
+    border-color: transparent;
+    font-family: 'Felix007', serif;
+    font-size: 25px;
+    border-radius: 12px;
+}
+
+.newFont{
+    background-color: #6489b1;
+    border-color: transparent;
+    color: white;
+    font-family: 'Felix007', serif;
+    font-size: 20px;
+    border-radius: 12px;
+}
+
+.invisibleRow{
+    border: none;
+    background-color: transparent;
+}
+
+.container {
+    font-size: 0; /* Required because inline-block elements have space between them. Other possible solutions for the problem: http://css-tricks.com/fighting... */
+    overflow: auto;
+    overflow-y: hidden;
+    white-space: nowrap; /* actually this line of code does the "magic" */
+    width: 100%;
+    height: 100%;
+}
+
+.container > article {
+    display: inline-block;
+    /*    font-size: 16px; !* Reset font-size back to normal *!*/
+    vertical-align: top;
+    /*   width: 100%;*/
+}
+
+.table > section {
+    width: 100vw;
+    height: 100vh;
+}
+
+.horizTranslate {
+    -webkit-transition: 3s;
+    -moz-transition: 3s;
+    -ms-transition: 3s;
+    -o-transition: 3s;
+    transition: 3s;
+    margin-left: 50% !important;
+}
+
+#btnAnimate{
+    background-image: url("../img/fruitCar.jpg");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    font-family: 'Felix007', serif;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px 0 rgba(172, 41, 37, 0.2), 0 6px 20px 0 rgba(148, 39, 67, 0.19);
+    width: 110px;
+    height: 100px;
+    font-size: 35px;
+    color: black;
+    padding-bottom: 38%;
+    font-weight: 700;
+}

@@ -1,0 +1,62 @@
+.invisibleRow{
+    border: none;
+    background-color: transparent;
+}
+
+#text{
+    font-size: large;
+    border-radius: 50%;
+	font-family: 'Felix007', serif;
+}
+
+.contain{
+    left: 10%;
+	padding-top: 5px;
+}
+
+#submit{
+	
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: white;
+    color: #008CBA;
+    border: 2px solid;
+    border-radius: 23px;
+    background-image: url("../img/search.png");
+	background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    border-color: transparent;
+    float: inherit;
+}
+
+#search{
+    width: 105px;
+    height: 40px;
+    background: lightgrey;
+    border: none;
+    font-size: 16px;
+    float: left;
+    color: black;
+    padding-left: 15px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    text-align: right;
+	font-family: 'Felix007', serif;
+}
+
+#dataMissing{
+	width: 100%;
+    font-size: 23px;
+    font-family: 'Felix007', serif;
+    color: red;
+}
+
+.font{
+	font-family: 'Felix007', serif;
+}

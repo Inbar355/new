@@ -1,0 +1,23 @@
+.inputBtn{
+    background-color: #b1b1b1;
+    color: white;
+    opacity: 0.9;
+    border-color: transparent;
+    font-family: 'Felix007', serif;
+    font-size: 25px;
+    border-radius: 12px;
+}
+
+.newFont{
+    background-color: #6489b1;
+    border-color: transparent;
+    color: white;
+    font-family: 'Felix007', serif;
+    font-size: 20px;
+    border-radius: 12px;
+}
+
+.invisibleRow{
+    border: none;
+    background-color: transparent;
+}
