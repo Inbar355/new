@@ -81,6 +81,7 @@ function onSuccess(position) {
 	alert("onSuccess");
 	var dest = firstCoordinate + "-" + secondCoordinate;
 	launchnavigator.navigate(dest, {
+		start: position.coords.latitude + ", " + position.coords.longitude,
         enableDebug: true
     });
 }
