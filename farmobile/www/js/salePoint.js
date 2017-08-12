@@ -108,10 +108,10 @@ function init() {
     }
 }
 
-function navigate(e){
+function navigate(){
 	alert("nevigate");
-	e.preventDefault();
-	navigator.geolocation.getCurrentPosition(onSuccess, onError);
+	window.location.href = "temp.html";
+	//navigator.geolocation.getCurrentPosition(onSuccess, onError);
 }
 
 function faceBookShare() {
