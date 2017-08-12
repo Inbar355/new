@@ -1,5 +1,4 @@
-var firstCoordinate;
-var secondCoordinate;
+var address;
 var ln;
 
 $(function(){
@@ -12,8 +11,7 @@ $(function(){
             console.log("db" + information);
             document.getElementById('addressInput').innerText =information[0];
 			var place = idOfSP.split("-");
-			firstCoordinate = place[0];
-			secondCoordinate = place[1];
+			address = information[0];
             var date = information[1].split("-");
             document.getElementById('dateInput').innerText = date[2] + "." + date[1] + "." + date[0];
 			var time1 = information[2].split(":");
@@ -78,9 +76,8 @@ function setPushMsg(){
 }
 
 function onSuccess(position) {
-	alert("onSuccess");
-	var dest = "[" + firstCoordinate + ", " + secondCoordinate + "]";
-	var start = position.coords.latitude + ", " + position.coords.longitude;
+	//var dest = "[" + firstCoordinate + ", " + secondCoordinate + "]";
+	var start = position.coords.longitude + ", " + position.coords.latitude;
 	
 	var opts = {
         app: ln.APP.WAZE,
@@ -88,7 +85,7 @@ function onSuccess(position) {
         enableDebug: true,
     };
 	
-	ln.navigate(dest, opts);
+	ln.navigate(address, opts);
 }
 
 function onError(error) {
@@ -108,8 +105,6 @@ function init() {
 }
 
 function navigate(){
-	alert("nevigate");
-	//window.location.href = "temp.html";
 	navigator.geolocation.getCurrentPosition(onSuccess, onError);
 }
 
