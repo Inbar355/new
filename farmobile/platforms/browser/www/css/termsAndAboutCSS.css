@@ -1,0 +1,23 @@
+#textZone{
+    position: relavtive;
+    text-align: right;
+    font-size: large;
+    padding-right: 13%;
+    padding-left: 13%;
+	font-family: 'Felix007', serif;
+}
+
+#topHeadline{
+    position: absolute;
+    text-align: right;
+    padding-left: 18%;
+	font-family: 'Felix007', serif;
+}
+
+#videoZone{
+	position: absolute;
+}
+
+#topHeadline{
+	    padding-right: 15%;
+}
