@@ -1,5 +1,6 @@
 var firstCoordinate;
 var secondCoordinate;
+var ln;
 
 $(function(){
 	ready = 0;
@@ -51,6 +52,7 @@ $(function(){
     document.body.appendChild(centerControlDiv);
 
     setText();
+	$(document).on("deviceready", init);
 });
 
 function setPushMsg(){
@@ -80,44 +82,36 @@ function onSuccess(position) {
 	alert("onSuccess");
 	var dest = firstCoordinate + "-" + secondCoordinate;
 	var start = position.coords.latitude + ", " + position.coords.longitude;
+	
 	var opts = {
-        app: values["app"],
-        destinationName: values["dest-name"],
-        start: values["start"],
-        startName: values["start-name"],
-        transportMode: values["transport-mode"],
-        extras: parseExtras(values["extras"]),
-        appSelection:{
-            dialogHeaderText: "Custom header",
-            cancelButtonText: "Custom cancel text",
-            list: getSelectableApps(),
-            callback: function(app){
-                console.info("User selected app: "+app);
-            },
-            rememberChoice: {
-                enabled: values["should-remember-choice"]
-            }
-        },
-
+        app: ln.APP.WAZE,
+        start: start,
         enableDebug: true,
-        enableGeocoding: values["enable-geocoding"] === "on"
     };
-	launchnavigator.navigate(dest, {
-		start: start,
-		app: launchnavigator.APP.WAZE,
-        enableDebug: true
-    });
+	
+	ln.navigate(dest, opts);
 }
 
 function onError(error) {
     alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
 }
 
+function init() {
+	ln = launchnavigator;
+    platform = device.platform.toLowerCase();
+    if(platform == "android"){
+        platform = ln.PLATFORM.ANDROID;
+    }else if(platform == "ios"){
+        platform = ln.PLATFORM.IOS;
+    }else if(platform.match(/win/)){
+        platform = ln.PLATFORM.WINDOWS;
+    }
+}
 
-function navigate(){
+function navigate(e){
 	alert("nevigate");
-	window.location.href = "temp.html";
-	//navigator.geolocation.getCurrentPosition(onSuccess, onError);
+	e.preventDefault();
+	navigator.geolocation.getCurrentPosition(onSuccess, onError);
 }
 
 function faceBookShare() {
