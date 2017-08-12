@@ -8,6 +8,9 @@
         Farmobile app
     </author>
     <content src="index.html" />
+	<preference name="fullscreen" value="false" />
+    <preference name="orientation" value="default" />
+    <preference name="permissions" value="none" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="StatusBarOverlaysWebView" value="false" />
@@ -18,7 +21,7 @@
         <variable name="SENDER_ID" value="XXXXXXX" />
     </plugin>
     <plugin name="cordova-plugin-console" source="npm" spec="~1.0.3" />
-	<plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" source="npm" />
+	<plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" spec="4" />
     <plugin name="cordova-plugin-dialogs" source="npm" spec="~1.2.1" />
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
 	<plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1" />
@@ -114,7 +117,7 @@
 		<param name="android-package" value="org.apache.cordova.geolocation.GeoBroker" />
 	</feature>
     <access origin="*" />
-	<allow-navigation href="http://*/*" />
+	
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
