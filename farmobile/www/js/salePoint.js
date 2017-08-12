@@ -52,7 +52,6 @@ $(function(){
     document.body.appendChild(centerControlDiv);
 
     setText();
-	$(document).on("deviceready", init);
 });
 
 function setPushMsg(){
@@ -80,7 +79,7 @@ function setPushMsg(){
 
 function onSuccess(position) {
 	alert("onSuccess");
-	var dest = firstCoordinate + "-" + secondCoordinate;
+	var dest = "[" + firstCoordinate + ", " + secondCoordinate + "]";
 	var start = position.coords.latitude + ", " + position.coords.longitude;
 	
 	var opts = {
@@ -119,3 +118,5 @@ function faceBookShare() {
 
 
 }
+
+$(document).on("deviceready", init);
