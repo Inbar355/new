@@ -109,8 +109,8 @@ function init() {
 
 function navigate(){
 	alert("nevigate");
-	window.location.href = "temp.html";
-	//navigator.geolocation.getCurrentPosition(onSuccess, onError);
+	//window.location.href = "temp.html";
+	navigator.geolocation.getCurrentPosition(onSuccess, onError);
 }
 
 function faceBookShare() {
