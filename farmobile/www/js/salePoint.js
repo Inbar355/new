@@ -115,20 +115,19 @@ function faceBookShare() {
 }
 
 function calendar(){
-	/*
+	alert("calandar");
 	var options = {
 	url: 'https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin',
 	calendarName: calendarName, // iOS specific
 	calendarId: 1 // Android specific
 	};
-	var startDate = new Date(2017,8,29,18,30,0,0,0); // beware: month 0 = january, 11 = december
-  var endDate = new Date(2017,8,29,19,30,0,0,0);
-  var title = "My nice event";
-  var location = "Home";
-  var notes = "Some notes about this event.";
-  var success = function(message) { alert("Success: " + JSON.stringify(message)); };
-  var error = function(message) { alert("Error: " + message); };
-  window.plugins.calendar.createEventWithOptions(title, location, notes, startDate, endDate, options, success, error);*/
+	var startDate = new Date(2017,8,30,18,30,0,0,0); // beware: month 0 = january, 11 = december
+	var endDate = new Date(2017,8,30,19,30,0,0,0);
+	var title = "My nice event";
+	var success = function(message) { alert("Success: " + JSON.stringify(message)); };
+	var error = function(message) { alert("Error: " + message); };
+	 window.plugins.calendar.createEvent(title,startDate,endDate,success,error);
+	window.plugins.calendar.createEventWithOptions(title, startDate, endDate, options, success, error);
 
 }
 

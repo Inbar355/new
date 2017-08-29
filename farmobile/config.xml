@@ -76,4 +76,15 @@
         <variable name="SENDER_ID" value="com.farmobileapp" />
     </plugin>
     <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" />
+	<feature name="Calendar">
+		<param name="ios-package" value="Calendar" />
+	</feature>
+	<feature name="Calendar">
+		<param name="android-package" value="nl.xservices.plugins.Calendar" />
+	</feature>
+	<config-file target="AndroidManifest.xml" parent="/manifest">
+		<uses-permission android:name="android.permission.READ_CALENDAR"/>
+		<uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+    </config-file>
+	<plugin name="nl.x-services.plugins.calendar" />
 </widget>
