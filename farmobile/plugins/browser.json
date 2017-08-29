@@ -1,0 +1,27 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.farmobile"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "XXXXXXX",
+            "PACKAGE_NAME": "com.farmobile"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.farmobile"
+        },
+        "cordova-plugin-facebook4": {
+            "APP_ID": "1901343470147655",
+            "APP_NAME": "FarmobileApp",
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
+        }
+    },
+    "dependent_plugins": {}
+}

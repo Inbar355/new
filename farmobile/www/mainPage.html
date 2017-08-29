@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src 'self' 'unsafe-inline' *; img-src * data: 'unsafe-inline'">
+<meta name="viewport" content="width=device-width, height= device-height, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="css/mainCSS.css">
+    <link rel="stylesheet" href="css/sideAndUpperMenuCSS.css">
+	<link href='http://serve.fontsproject.com/css?family=Felix007:400' rel='stylesheet' type='text/css'>
+    <script src="js/mainScript.js"></script>
+    <script src="js/sideAndUpperMenuScript.js"></script>
+    <script src="js/jquery-2.0.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
+    <table>
+        <tr>
+            <td><img id="welcomeImg" src="img/face.jpg"><br>
+                <a id="userName"></a></td>
+        </tr>
+        <tr>
+            <td><a href="mainPage.html">פירוט נקודות מכירה  <img src="img/fruit_car.jpg"></a></td>
+        </tr>
+        <tr>
+            <td><a href="protestInfo.html">על המחאה  <img src="img/protest_sign.jpg"></a></td>
+        </tr>
+        <tr>
+            <td><a href="farmersInfoGeneral.html">אודות החקלאים  <img src="img/farmer.jpg"></a></td>
+        </tr>
+        <tr>
+            <td><a href="produceInfoGeneral.html">אודות התוצרת  <img src="img/fruits.jpg"></a></td>
+        </tr>
+        <tr>
+            <td><a href="loginAndSign.html">התחבר/הרשם למועדון לקוחות <img src="img/login.png"></a></td>
+        </tr>
+        <tr>
+            <td><a href="TermsOfUse.html">תנאי שימוש  <img src="img/terms.jpg"></a></td>
+        </tr>
+		<tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<div id="floating-panel">
+    <button class="icon" id="submit"></button>
+    <input type="text" align="right" id="address" placeholder="חיפוש כתובת" />
+</div>
+<div id="map"></div>
+<span id="requestPointZone">
+     <button class="btn btn-info btn-block bigButton" onclick="changeButtons()" id="choiceList">הזמן נקודת מכירה</button>
+</span>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADlk_CtGRjQOGs3fk8NjG9yVQwj4xPxnI&callback=initMap">
+</script>
+</body>
+</html>
+
+

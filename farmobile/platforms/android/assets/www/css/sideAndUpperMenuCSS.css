@@ -1,0 +1,102 @@
+#menu {
+    background-image: url("../img/menu.png");
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: transparent;
+    position: absolute;
+    right: 5%;
+    width: 10%;
+    height: 80%;
+    top: 22%;
+}
+
+#upperButton{
+    position: fixed;
+    border: transparent;
+    background: rgba(248, 248, 255, 0.5);
+    height: 9%;
+	top: 1%;
+}
+
+.sidenav {
+    top: 0;
+    width: 0%;
+    height:100%;
+    position: fixed;
+    z-index: 1;
+    right: 0;
+    background-size: cover;
+    overflow-x: hidden;
+    transition: 0.5s;
+    background-color: white;
+}
+
+.sidenav a {
+    text-decoration: none;
+    font-size: 100%;
+    color: black;
+    display: block;
+    transition: 0.3s;
+    text-align: right;
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #A7A7A7;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    right: 80%;
+    font-size: 36px;
+    margin-left: 50px;
+	background-image: url("../img/menu.png");
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: transparent;
+	width: 15%;
+    height: 5%;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+table, td {
+    border: 1px solid;
+    font-size: large;
+	font-family: 'Felix007', serif;
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    border-width: thick;
+    border-color: white;
+    padding: 0px;
+	width: 100%;
+    height: -webkit-fill-available;
+}
+
+#rightLogo{
+    background-image: url("../img/rightLogo.png");
+    background-repeat: no-repeat;
+    border: transparent;
+    height: 100%;
+    width: 75px;
+    background-color: transparent;
+    left: 40%;
+    background-position: right;
+    position: absolute;
+    top: 13%;
+}
+
+#userName{
+    background-color: aliceblue;
+    text-align: center;
+}
+
+#welcomeImg{
+    padding-left: 32%;
+    padding-top: 10%;
+}
