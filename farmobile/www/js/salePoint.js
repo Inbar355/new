@@ -6,6 +6,7 @@ $(function(){
     var idOfSP = getUrlVars()["id"];
     $.ajax({
         url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+        timeout: 3000,
         data: {requestType :"getSalePointData", idOfSalePoint: idOfSP},
         success: function(information) {
 			if (information[1] != null){
@@ -68,6 +69,7 @@ function setPushMsg(){
     var idOfSP = getUrlVars()["id"];
     $.ajax({
         url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+        timeout: 3000,
         data: {requestType :"getNotificationToSalePoint", idOfPage: idOfSP, owner: "1A2S3D4F5F"},
         error: function (error) {
             console.error("Failed to get ajax response : " + error);

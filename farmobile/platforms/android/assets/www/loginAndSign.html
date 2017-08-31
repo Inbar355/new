@@ -70,10 +70,12 @@
                 <div class="group">
                     <input type="submit" class="button" value="Sign  In" onclick="Login()">
                 </div>
-				<br><br><br><br>
-				<img id="FBpic" src="img/connectVIAFB.png" onclick="loginToFB()">
                 <div class="col-xs-4"></div>
+                <!--<div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with"
+                     data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="true"
+                     onlogin="checkLoginState()"></div>-->
                 <label id="dataMissMatch" class="data-alert"></label>
+                <button type="fb_login" id = "addPoint" class="btn btn-danger btn-block" onclick="loginToFB()" >אישור</button>
             </div>
             <div class="sign-up-htm">
                 <div class="group">

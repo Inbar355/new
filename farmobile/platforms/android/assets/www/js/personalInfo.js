@@ -33,13 +33,13 @@ $(function(){
     centerControlDiv.appendChild(rightLogo);
     centerControlDiv.index = 1;
     document.body.appendChild(centerControlDiv);
-	setInnerHtmlText('farmName', 'swap');
-	setInnerHtmlText('farmerInfo', 'swapInfo');
+	
+	setInnerHtmlText('farmName');
     setText();
 });
 
-function setInnerHtmlText(id, className)
-{
+function setInnerHtmlText(id, className){
+	
 	if (id == "farmAdd" && once == 1){
 		document.getElementById('firstElem').className -= "active";
 		once = 0;
@@ -48,7 +48,6 @@ function setInnerHtmlText(id, className)
 		document.getElementById('secElem').className -= "active";
 		sec = 0;
 	}
-	
 	 var x = document.getElementsByClassName(className);
 	 for (var i=0; i< x.length; i++)
 		 x[i].style.display = 'none';

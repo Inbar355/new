@@ -38,7 +38,7 @@ $(function(){
 });
 
 function setInnerHtmlText(id){
-	if (id == "weightPerPack" && once == 1){
+	if (id == weightPerPack && once == 1){
 		document.getElementById('first').className -= "active";
 		once = 0;
 	}

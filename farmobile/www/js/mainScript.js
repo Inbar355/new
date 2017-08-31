@@ -13,7 +13,7 @@ function geocodeAddress(resultsMap, geocoder) {
 
 function onSuccess(position) {
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
+        zoom: 8,
         center: {lat: position.coords.latitude , lng: position.coords.longitude},
         mapTypeControl: false
     });
@@ -23,7 +23,7 @@ function onSuccess(position) {
 function onError(error) {
     alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
 	var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
+        zoom: 5,
         center: {lat: 32.080633 , lng: 34.789022},
         mapTypeControl: false
     });
@@ -33,6 +33,7 @@ function onError(error) {
 function initPage(map){
 	$.ajax({
         url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+        timeout: 3000,
         data: {requestType :"mainMarkers"},
         success: function(location) {
             for(var i=0; i<location.length; i++) {
@@ -141,6 +142,7 @@ function sendAddress() {
     if (checkForCityValidation (data)){
         $.ajax({
             url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+            timeout: 3000,
             data: {requestType :"sendNewAddress", newAddress: data},
             success: function() {
                 alert ("הבקשה נשלחה בהצלחה.");

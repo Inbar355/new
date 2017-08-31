@@ -1,4 +1,9 @@
+var once = 1;
+
+
 $(function(){
+
+
     var centerControlDiv = document.createElement('button');
     centerControlDiv.className="btn-block";
     centerControlDiv.id="upperButton";
@@ -100,8 +105,9 @@ function signUp() {
 function loginToFB() {
     try {
         facebookConnectPlugin.login(["public_profile"], function (response) {
-            alert(response.authResponse.userID + " and " + response.authResponse + response.name + response.authResponse.first_name + response.authResponse.last_name);
-            statusChangeCallback(response);
+            facebookConnectPlugin.api('/me',["public_profile"], function (data) {
+                statusChangeCallback(data);
+             });
         }, function (er) {
             console.log("error : " + er);
         })
@@ -112,23 +118,28 @@ function loginToFB() {
 }
 
 function statusChangeCallback(response) {
-	//for US to check
-	console.log('Successful login for: ' + response.name);
-    console.log('Successful login for: ' + response.id);
-	$.ajax({
-		url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-        data: {requestType :"userSignViaFacebook", userName: response.name, userFaceID: response.userID},
-        success: function(array) {
-			sessionStorage.setItem('userLogin', response.name);
-            window.location.href = "personalPage.html" + "?id=" + array[0];
-        },
-        error: function(lo){ console.log("error" + lo.message); }
-	});
+/*            if(once){ /// ?
+                console.log('Successful login for: ' + response.name);
+                console.log('Successful login for: ' + response.id);
+                $.ajax({
+                    url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+                    data: {requestType :"userSignViaFacebook", userName: response.name, userFaceID: response.userID},
+                    success: function(array) {
+                        sessionStorage.setItem('userLogin', response.name);
+                        window.location.href = "personalPage.html" + "?id=" + array[0];
+                    },
+                    error: function(lo){ console.log("error" + lo.message); }
+                });
+                once = 0;
+            }
+            else
+                once = 1;*/
+
 }
 
 
 function deleteSignIn(){
-	document.getElementById("loginImg").style.minHeight = "500px";
+	document.getElementById("loginImg").style.minHeight = "450px";
     document.getElementById('dataMissing').innerText = "";
     document.getElementById('signUserName').value = "";
     document.getElementById('signPassword').value = "";

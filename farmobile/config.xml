@@ -14,8 +14,7 @@
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#ee6e73" />
     <preference name="StatusBarStyle" value="blacktranslucent" />
-	<preference name="android-build-tool" value="gradle" />
-    <icon src="icon.png" />
+    <preference name="android-build-tool" value="gradle" />
     <feature name="Geolocation">
         <param name="ios-package" value="CDVLocation" />
     </feature>
@@ -77,12 +76,4 @@
         <variable name="SENDER_ID" value="com.farmobileapp" />
     </plugin>
     <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" />
-	<plugin name="cordova-plugin-calendar" />
-	<feature name="Calendar">
-		<param name="android-package" value="nl.xservices.plugins.Calendar" />
-	</feature>
-	<config-file target="AndroidManifest.xml" parent="/manifest">
-		<uses-permission android:name="android.permission.READ_CALENDAR"/>
-		<uses-permission android:name="android.permission.WRITE_CALENDAR"/>
-    </config-file>
 </widget>

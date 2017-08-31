@@ -7,21 +7,75 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.farmobile"
-        },
-        "phonegap-plugin-push": {
-            "SENDER_ID": "XXXXXXX",
-            "PACKAGE_NAME": "com.farmobile"
-        },
         "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.farmobile"
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
         },
         "cordova-plugin-facebook4": {
             "APP_ID": "1901343470147655",
             "APP_NAME": "FarmobileApp",
             "PACKAGE_NAME": "com.phonegap.Farmobile"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-battery-status": {
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
+        },
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
+        },
+        "cordova-plugin-device-motion": {
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
+        },
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
+        },
+        "cordova-plugin-globalization": {
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
+        }
+    }
 }

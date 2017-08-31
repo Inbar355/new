@@ -100,8 +100,9 @@ function signUp() {
 function loginToFB() {
     try {
         facebookConnectPlugin.login(["public_profile"], function (response) {
-            alert(response.authResponse.userID + " and " + response.authResponse + response.name + response.authResponse.first_name + response.authResponse.last_name);
-            statusChangeCallback(response);
+            facebookConnectPlugin.api('/me',["public_profile"], function (data) {
+                statusChangeCallback(data);
+            });
         }, function (er) {
             console.log("error : " + er);
         })

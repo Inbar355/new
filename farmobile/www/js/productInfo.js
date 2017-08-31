@@ -1,6 +1,7 @@
 $(function(){
     $.ajax({
         url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+        timeout: 3000,
         data: {requestType :"getProductInfo"},
         success: function(information) {
             for(var i=0; i<information.length; i++) {

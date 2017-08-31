@@ -3,6 +3,7 @@ $(function(){
     var id = getUrlVars()["id"];
     $.ajax({
         url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+        timeout: 3000,
         data: {requestType :"getSpecificProdInfo", ProductID: id},
         success: function(information) {
 			var str = "על התוצרת: " + information[0];

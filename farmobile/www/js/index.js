@@ -53,6 +53,7 @@ var app = {
 function AjaxInserUserUUIDToDB (AT){
     $.ajax({
         url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+        timeout: 3000,
         data: {requestType :"asignUUID-AT", uuid: device.uuid, accessToken: AT, platform: device.platform},
         success: function(ret) {
             console.log("assigned ");

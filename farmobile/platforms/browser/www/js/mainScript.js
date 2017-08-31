@@ -23,7 +23,7 @@ function onSuccess(position) {
 function onError(error) {
     alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
 	var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
+        zoom: 9,
         center: {lat: 32.080633 , lng: 34.789022},
         mapTypeControl: false
     });
