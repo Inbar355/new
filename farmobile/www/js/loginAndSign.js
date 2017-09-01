@@ -107,12 +107,10 @@ function loginToFB() {
                 statusChangeCallback(data);
             });
         }, function (er) {
-			alert("error : " + er);
             console.log("error : " + er);
         })
     }
     catch (Err){
-		alert("error exception : " + Err.message);
         console.log("loginToFB error cought " + Err.message);
     }
 }
@@ -121,7 +119,6 @@ function statusChangeCallback(response) {
 	//for US to check
 	console.log('Successful login for: ' + response.name);
     console.log('Successful login for: ' + response.id);
-	alert("sucess: " + response.name + response.id);
 	$.ajax({
 		url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
         timeout: 3000,

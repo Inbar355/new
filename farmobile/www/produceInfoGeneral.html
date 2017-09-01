@@ -19,7 +19,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
     <table>
         <tr>
-            <td><img id="welcomeImg" src="img/face.jpg">
+            <td><div class="col-xs-4"></div> <img id="welcomeImg" src="img/face.jpg">
                 <a id="userName"></a></td>
         </tr>
         <tr>
@@ -47,21 +47,24 @@
 </div>
 <br><br><br><br><br>
 
-<div align="right">
-    <div class="col-xs-2"></div>
-    <div class="col-xs-10">
-        <h3><span class="font label label-info">: התוצרת שלנו</span></h3>
-    </div>
-    <br><br>
-    <div class="col-xs-4">
-        <button class="icon" id="submit" onclick="searchProduce()"></button>
-        <input type="search" id="search" placeholder="חיפוש תוצרת"/>
+<div class="container animated ani1">
+    <div class="imgHolder">
+        <img id="fruitsPic" src="img/fruits.png" style="height: 117px;">
+        <span id="prodName"></span>
     </div>
 </div>
-<br><br>
-<div align="right">
-    <label id="dataMissing"></label>
-</div>
+
+
 <br>
+<div class="container">
+    <button class="icon" id="submit" onclick="searchProduce()"></button>
+    <input type="search" id="search" placeholder="חיפוש תוצרת" onkeyup="if (event.keyCode == 13) {searchProduce();}"/>
+</div>
+
+<div class="container" id="dataMissing" style="display: none">
+    <div class="col-xs-5"></div>
+    <button type="button" class="btn btn-danger btn-block" onclick="recoverPics()">לא נמצאו תוצאות, נקה</button>
+</div>
+
 </body>
 </html>

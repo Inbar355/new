@@ -6,7 +6,7 @@ $(function(){
         timeout: 3000,
         data: {requestType :"getSpecificProdInfo", ProductID: id},
         success: function(information) {
-			var str = "על התוצרת: " + information[0];
+			var str =  information[0];
             document.getElementById('prodName').innerText = str;
 			information[1] != null ? document.getElementById('pricePerPack').innerText = information[1] : document.getElementById('pricePerPack').innerText = "כרגע אין מחיר עבור תוצר זה.";
 			information[2] != null ? document.getElementById('weightPerPack').innerText = information[2] : document.getElementById('weightPerPack').innerText = "כרגע אין משקל עבור תוצר זה.";
