@@ -7,7 +7,7 @@
     right: 5%;
     width: 10%;
     height: 80%;
-    top: 18%;
+    top: 22%;
 }
 
 #upperButton{
@@ -15,7 +15,7 @@
     border: transparent;
     background: rgba(248, 248, 255, 0.5);
     height: 9%;
-	top: 1%;
+	top: 0%;
 }
 
 .sidenav {
@@ -37,7 +37,7 @@
     color: black;
     display: block;
     transition: 0.3s;
-    text-align: right;
+    text-align: center;
 }
 
 .sidenav a:hover, .offcanvas a:focus{
@@ -64,7 +64,6 @@
 
 table, td {
     border: 1px solid;
-    font-size: large;
 	font-family: 'Felix007', serif;
     color: white;
 }
@@ -97,6 +96,7 @@ table {
 }
 
 #welcomeImg{
-    padding-left: 32%;
-    padding-top: 10%;
+    -webkit-border-radius:100%;
+    -moz-border-radius:100%;
+    border-radius: 100%;
 }

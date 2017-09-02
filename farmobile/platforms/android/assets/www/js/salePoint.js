@@ -6,6 +6,7 @@ $(function(){
     var idOfSP = getUrlVars()["id"];
     $.ajax({
         url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+        timeout: 3000,
         data: {requestType :"getSalePointData", idOfSalePoint: idOfSP},
         success: function(information) {
 			if (information[1] != null){
@@ -68,6 +69,7 @@ function setPushMsg(){
     var idOfSP = getUrlVars()["id"];
     $.ajax({
         url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+        timeout: 3000,
         data: {requestType :"getNotificationToSalePoint", idOfPage: idOfSP, owner: "1A2S3D4F5F"},
         error: function (error) {
             console.error("Failed to get ajax response : " + error);
@@ -112,7 +114,22 @@ function navigate(){
 
 function faceBookShare() {
     alert("shring..");
+}
 
+function calendar(){
+	alert("calandar");
+	var options = {
+	url: 'https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin',
+	calendarName: calendarName, // iOS specific
+	calendarId: 1 // Android specific
+	};
+	var startDate = new Date(2017,8,30,18,30,0,0,0); // beware: month 0 = january, 11 = december
+	var endDate = new Date(2017,8,30,19,30,0,0,0);
+	var title = "My nice event";
+	var success = function(message) { alert("Success: " + JSON.stringify(message)); };
+	var error = function(message) { alert("Error: " + message); };
+	 window.plugins.calendar.createEvent(title,startDate,endDate,success,error);
+	window.plugins.calendar.createEventWithOptions(title, startDate, endDate, options, success, error);
 
 }
 

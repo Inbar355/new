@@ -33,12 +33,14 @@
             "phonegap-plugin-push": {
                 "SENDER_ID": "com.farmobileapp"
             },
-            "uk.co.workingedge.phonegap.plugin.launchnavigator": {}
+            "uk.co.workingedge.phonegap.plugin.launchnavigator": {},
+            "cordova-plugin-firebase": {}
         }
     },
     "dependencies": {
         "cordova-android": "^6.2.3",
         "cordova-browser": "^4.1.0",
+        "cordova-ios": "^4.4.0",
         "cordova-plugin-battery-status": "~1.1.1",
         "cordova-plugin-camera": "~2.1.1",
         "cordova-plugin-console": "~1.0.3",
@@ -50,6 +52,7 @@
         "cordova-plugin-facebook4": "~1.9.1",
         "cordova-plugin-file": "~4.1.1",
         "cordova-plugin-file-transfer": "~1.5.0",
+        "cordova-plugin-firebase": "^0.1.24",
         "cordova-plugin-geolocation": "~2.1.0",
         "cordova-plugin-globalization": "~1.0.3",
         "cordova-plugin-inappbrowser": "~1.3.0",

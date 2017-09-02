@@ -17,6 +17,13 @@
         },
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.phonegap.Farmobile"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "com.farmobileapp",
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
+        },
+        "cordova-plugin-firebase": {
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
         }
     },
     "dependent_plugins": {

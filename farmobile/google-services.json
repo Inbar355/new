@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "935986272331",
+    "firebase_url": "https://farmobileproject.firebaseio.com",
+    "project_id": "farmobileproject",
+    "storage_bucket": "farmobileproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:935986272331:android:d718ef52a855ac12",
+        "android_client_info": {
+          "package_name": "com.farmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "935986272331-oanbqee8bqsdktbdm2gailggcn359i6b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA52khH1kpv4ZWHUfvk3citwNpmtiX5l-E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,9 +1,4 @@
-var once = 1;
-
-
 $(function(){
-
-
     var centerControlDiv = document.createElement('button');
     centerControlDiv.className="btn-block";
     centerControlDiv.id="upperButton";
@@ -27,6 +22,7 @@ $(function(){
         document.getElementById("userName").innerHTML = " שלום " + sessionStorage.getItem('userLogin');
         $.ajax({
             url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+            timeout: 3000,
             data: {requestType :"isUserLogIn", userName: sessionStorage.getItem('userLogin')},
             success: function(array) {
                 if(array[0] != 0)//user already log In to the system
@@ -47,6 +43,7 @@ function Login() {
 	var check = document.getElementById('check').checked;
     $.ajax({
         url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+        timeout: 3000,
         data: {requestType :"userLogin", userName: userName, userPass: userPassword},
         success: function(array) {
             if(array[0] == -1)//user name + password doesn't found
@@ -87,6 +84,7 @@ function signUp() {
     else{
         $.ajax({
             url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+            timeout: 3000,
             data: {requestType :"userSign", userName: userName, userPass: userPassword1,
             name: fullName, date: date, add: address},
             success: function(array) {
@@ -107,7 +105,7 @@ function loginToFB() {
         facebookConnectPlugin.login(["public_profile"], function (response) {
             facebookConnectPlugin.api('/me',["public_profile"], function (data) {
                 statusChangeCallback(data);
-             });
+            });
         }, function (er) {
             console.log("error : " + er);
         })
@@ -118,28 +116,24 @@ function loginToFB() {
 }
 
 function statusChangeCallback(response) {
-/*            if(once){ /// ?
-                console.log('Successful login for: ' + response.name);
-                console.log('Successful login for: ' + response.id);
-                $.ajax({
-                    url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-                    data: {requestType :"userSignViaFacebook", userName: response.name, userFaceID: response.userID},
-                    success: function(array) {
-                        sessionStorage.setItem('userLogin', response.name);
-                        window.location.href = "personalPage.html" + "?id=" + array[0];
-                    },
-                    error: function(lo){ console.log("error" + lo.message); }
-                });
-                once = 0;
-            }
-            else
-                once = 1;*/
-
+	//for US to check
+	console.log('Successful login for: ' + response.name);
+    console.log('Successful login for: ' + response.id);
+	$.ajax({
+		url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+        timeout: 3000,
+        data: {requestType :"userSignViaFacebook", userName: response.name, userFaceID: response.userID},
+        success: function(array) {
+			sessionStorage.setItem('userLogin', response.name);
+            window.location.href = "personalPage.html" + "?id=" + array[0];
+        },
+        error: function(lo){ console.log("error" + lo.message); }
+	});
 }
 
 
 function deleteSignIn(){
-	document.getElementById("loginImg").style.minHeight = "450px";
+	document.getElementById("loginImg").style.minHeight = "500px";
     document.getElementById('dataMissing').innerText = "";
     document.getElementById('signUserName').value = "";
     document.getElementById('signPassword').value = "";

@@ -2,6 +2,7 @@ $(function(){
     var id = getUrlVars()["id"];
     $.ajax({
         url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+        timeout: 3000,
         data: {requestType :"getUserName", id: id},
         success: function(information) {
             document.getElementById('personalName').innerText = " שלום: " + information[0];
@@ -42,6 +43,7 @@ function updateInfo(){
     else {
         $.ajax({
             url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+            timeout: 3000,
             data: {
                 requestType: "updateInfo", id: id,
                 Add: newAdd, Pass: newPass, Bday: newBDay},
