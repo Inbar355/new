@@ -12,18 +12,15 @@ var app = {
     setupPush: function () {
 		var pushNotification = window.plugins.pushNotification;
 		pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"farmobileproject","ecb":"app.onNotificationGCM"});
-	}
-	
+	},
 	successHandler: function(result) {
     alert('Callback Success! Result = '+result)
 	},
-	
 	errorHandler:function(error) {
     alert(error);
 	},
-	
 	onNotificationGCM: function(e) {
-        switch(e.event)
+        switch( e.event )
         {
             case 'registered':
                 if ( e.regid.length > 0 )
@@ -47,10 +44,11 @@ var app = {
               break;
         }
     }
-		
-		
-		/*
-		var push = PushNotification.init({
+	
+	
+	
+	/*
+        var push = PushNotification.init({
             "android": {
                 "senderID": "XXXXXXXX"
             },
@@ -85,7 +83,6 @@ var app = {
                 'Ok'                  // buttonName
             );
         });*/
-    }
 };
 
 

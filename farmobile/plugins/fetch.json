@@ -41,13 +41,5 @@
             "APP_ID": "1901343470147655",
             "APP_NAME": "FarmobileApp"
         }
-    },
-    "cordova-plugin-firebase": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-firebase@0.1.24"
-        },
-        "is_top_level": true,
-        "variables": {}
     }
 }

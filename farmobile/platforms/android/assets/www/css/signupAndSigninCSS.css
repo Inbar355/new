@@ -4,13 +4,6 @@ body{
     background:#c8c8c8;
     font:600 16px/18px 'Felix007', serif;
     font-size: 25px;
-    background: url(../img/background.jpg) no-repeat center;
-    background-size: contain;
-    background-position-y: bottom;
-}
-
-#upperButton{
-    background: #ffffff ;
 }
 
 a{
@@ -32,18 +25,18 @@ a{
     width:100%;
     margin:auto;
     max-width:80%;
-	min-height: 500px;
+	min-height: 450px;
     position:relative;
+    background:url("../img/image.jpg") no-repeat center;
     box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+	background-size: cover;
 }
 .login-html{
     width:100%;
     height:100%;
     position:absolute;
-    padding: 7% 10% 90% 30%;
+    padding: 40px 70px 50px 70px;
 }
-
-
 .login-html .sign-in-htm,
 .login-html .sign-up-htm{
     top:0;
@@ -79,7 +72,7 @@ a{
 }
 .login-html .sign-in:checked + .tab,
 .login-html .sign-up:checked + .tab{
-    color:#333;
+    color:#fff;
     border-color:#1161ee;
 }
 .login-form{
@@ -154,7 +147,7 @@ a{
     transform:scale(0) rotate(0deg);
 }
 .login-form .group .check:checked + label{
-    color:#333;
+    color:#fff;
     font-size: 20px;
     font-family: 'Felix007', serif;
 }
@@ -180,7 +173,7 @@ a{
 
 .foot-lnk{
     text-align:center;
-    font-size: 111%;
+    font-size: 25px;
     font-family: 'Felix007', serif;
     color: black;
 }
@@ -194,9 +187,4 @@ a{
 
 .text_align{
     text-align: center;
-}
-
-#FBpic{
-    height: 17%;
-    margin-left: -38%;
 }

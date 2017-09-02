@@ -4,18 +4,14 @@ $(function(){
     var id = getUrlVars()["id"];
     $.ajax({
         url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-        timeout: 3000,
         data: {requestType :"getPersonalInfo", farmersID: id},
         success: function(information) {
-            console.log(information);
-			var str = information[0];
+			var str = "שם החקלאי: " + information[0];
             document.getElementById('farmersName').innerText = str;
             document.getElementById('farmName').innerText = information[1];
             document.getElementById('farmAdd').innerText = information[2];
             document.getElementById('farmerInfo').innerText = information[3];
-            document.getElementById('farmInfo').innerText = information[4];
-            var img = document.getElementById('myImage');
-            img.src = "img/farmer@" + id + ".png";
+            document.getElementById('farmInfo').innerText = information[4];	
         },
         error: function(lo){   console.log("error" + lo.message);}
     });
@@ -37,11 +33,24 @@ $(function(){
     centerControlDiv.appendChild(rightLogo);
     centerControlDiv.index = 1;
     document.body.appendChild(centerControlDiv);
+	
+	setInnerHtmlText('farmName');
     setText();
 });
 
-
-function getDefImage() {
-    var img = document.getElementById('myImage');
-    img.src = "img/DefFarmer.jpg";
+function setInnerHtmlText(id, className){
+	
+	if (id == "farmAdd" && once == 1){
+		document.getElementById('firstElem').className -= "active";
+		once = 0;
+	}
+	else if (id == "farmInfo" && sec == 1){
+		document.getElementById('secElem').className -= "active";
+		sec = 0;
+	}
+	 var x = document.getElementsByClassName(className);
+	 for (var i=0; i< x.length; i++)
+		 x[i].style.display = 'none';
+        
+	document.getElementById(id).style.display = 'block';
 }

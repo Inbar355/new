@@ -21,7 +21,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
     <table>
         <tr>
-            <td><div class="col-xs-4"></div> <img id="welcomeImg" src="img/face.jpg">
+            <td><img id="welcomeImg" src="img/face.jpg">
                 <a id="userName"></a></td>
         </tr>
         <tr>
@@ -56,7 +56,7 @@
         <div class="login-form">
             <div class="sign-in-htm">
                 <div class="group">
-                    <label for="loginUserName" class="label" style=" margin-right: 19%;">: שם משתמש</label>
+                    <label for="loginUserName" class="label">: שם משתמש</label>
                     <input id="loginUserName" type="text" class="input text_align">
                 </div>
                 <div class="group">
@@ -70,22 +70,24 @@
                 <div class="group">
                     <input type="submit" class="button" value="Sign  In" onclick="Login()">
                 </div>
-				<br><br><br><br>
-				<img id="FBpic" src="img/connectVIAFB.png" onclick="loginToFB()">
                 <div class="col-xs-4"></div>
+                <!--<div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with"
+                     data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="true"
+                     onlogin="checkLoginState()"></div>-->
                 <label id="dataMissMatch" class="data-alert"></label>
+                <button type="fb_login" id = "addPoint" class="btn btn-danger btn-block" onclick="loginToFB()" >אישור</button>
             </div>
             <div class="sign-up-htm">
                 <div class="group">
-                    <label for="signUserName" class="label" style=" margin-right: 22%;">: שם משתמש*</label>
+                    <label for="signUserName" class="label">: שם משתמש*</label>
                     <input id="signUserName" type="text" class="input text_align" placeholder="(עברית)">
                 </div>
                 <div class="group">
-                    <label for="signPassword" class="label" style=" margin-right: -7%;">: סיסמה*</label>
+                    <label for="signPassword" class="label">: סיסמה*</label>
                     <input id="signPassword" type="password" class="input text_align" data-type="password">
                 </div>
                 <div class="group">
-                    <label for="signPassword2" class="label" style=" margin-right: 22%;">: סיסמה בשנית*</label>
+                    <label for="signPassword2" class="label">: סיסמה בשנית*</label>
                     <input id="signPassword2" type="password" class="input text_align" data-type="password">
                 </div>
                 <div class="group">
@@ -93,11 +95,11 @@
                     <input id="signFullName" type="text" class="input text_align">
                 </div>
                 <div class="group">
-                    <label for="signBDay" class="label" style=" margin-right: 15%;">: תאריך לידה</label>
+                    <label for="signBDay" class="label">: תאריך לידה</label>
                     <input id="signBDay" type="text" class="input text_align">
                 </div>
                 <div class="group">
-                    <label for="signAddress" class="label" style=" margin-right: -5%;">: כתובת</label>
+                    <label for="signAddress" class="label">: כתובת</label>
                     <input id="signAddress" type="text" class="input text_align">
                 </div>
 				<button class="btn btn-block invisibleRow" disabled></button>
@@ -106,7 +108,7 @@
                 </div>
 				<button class="btn btn-block invisibleRow" disabled></button>
                 <div class="foot-lnk">
-                    <label for="tab-1">?כבר חבר במועדון הלקוחות שלנו</label>
+                    <label for="tab-1"> כבר חבר במועדון הלקוחות שלנו? </label>
                 </div>
                 <label id="dataMissing" class="data-alert"></label>
             </div>

@@ -1,66 +1,41 @@
 body {margin:0;}
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: lightgrey;
+    top: 10;
+    width: 100%;
+}
+
+li {
+    float: right;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 12px 12px;
+    text-decoration: none;
+	font-family: 'Felix007', serif;
+	font-size: large;
+}
+
+li a:hover {
+    background-color: cornflowerblue;
+}
+
 .active {
     background-color: cornflowerblue;
 }
 
-.spacial {
-    color: white;
-    text-align: center;
-    font-size: large;
-    font-family: 'Felix007', serif;
-    border-radius: 12px;
-}
-
-.farmerPicName{
-    color: cornflowerblue;
-    background-color: whitesmoke;
-    text-align: center;
-    font-size: xx-large;
-    font-family: 'Felix007', serif;
-    border-radius: 12px;
-    border-color: cornflowerblue;
-    border-style: solid;
-}
-
-#prodName{
-    color: black;
-    background-color: whitesmoke;
-    text-align: center;
-    font-size: large;
-    font-family: 'Felix007', serif;
-    border-radius: 12px;
-    border-color: black;
-    border-style: solid;
-}
-
-.spacial2 {
-    color: black;
-    background-color: lightgrey;
-    text-align: center;
-    font-size: large;
-    font-family: 'Felix007', serif;
-    border-radius: 12px;
-}
-.imgHolder {
-    position: relative;
-}
-#prodName {
-    position: absolute;
-    right: 25%;
-    top: 83%;
-    width: 25%;
-}
-
-#farmersName {
-    position: absolute;
-    right: 7%;
-    top: 94%;
-    width: 20%;
-}
-
-#myImage {
-    width: 100%;
+.text{
+	text-align: right;
+	font-family: 'Felix007', serif;
+	font-size: large;
 }
 
 .info {
@@ -76,42 +51,7 @@ body {margin:0;}
 	direction: rtl;
 }
 
-
-.ani1 { animation-delay:0.1s; -moz-animation-delay:0.1s; -webkit-animation-delay:0.1s; }
-.ani2 { animation-delay:0.2s; -moz-animation-delay:0.2s; -webkit-animation-delay:0.2s; }
-.ani3 { animation-delay:0.3s; -moz-animation-delay:0.3s; -webkit-animation-delay:0.3s; }
-.ani4 { animation-delay:0.4s; -moz-animation-delay:0.4s; -webkit-animation-delay:0.4s; }
-.animated {
-    -webkit-animation-duration: 1s;
-    -moz-animation-duration: 1s;
-    -o-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    -moz-animation-fill-mode: both;
-    -o-animation-fill-mode: both;
-    animation-fill-mode: both;
-    animation-name: left;
-}
-
-@keyframes left {
-    0% {
-        opacity: 0;
-        transform: translateX(-2000px);
-}
-60% {
-    opacity: 1;
-    transform: translateX(30px);
-}
-80% {
-    transform: translateX(-10px);
-}
-100% {
-    transform: translateX(0);
-}
-}
-
-#productPic{
-    border-radius: 100%;
-    border-color: black;
-    border: 3px solid black;
+h2 {
+    -webkit-column-span: all; /* Chrome, Safari, Opera */
+    column-span: all;
 }

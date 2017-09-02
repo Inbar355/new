@@ -55,7 +55,6 @@ function initTermsAndInfo() {
 function ajaxForProtestInfo (reqFor, callback){
 	 $.ajax({
         url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-         timeout: 3000,
         data: {requestType :"getAboutTheProtest", requsetFor: reqFor},
 		      error: function (error) {
             console.error("Failed to get ajax response : " + error);

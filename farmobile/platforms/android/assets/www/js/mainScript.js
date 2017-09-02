@@ -13,7 +13,7 @@ function geocodeAddress(resultsMap, geocoder) {
 
 function onSuccess(position) {
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
+        zoom: 15,
         center: {lat: position.coords.latitude , lng: position.coords.longitude},
         mapTypeControl: false
     });
@@ -23,8 +23,8 @@ function onSuccess(position) {
 function onError(error) {
     alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
 	var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
-        center: {lat: 32.01 , lng: 34.789022},
+        zoom: 15,
+        center: {lat: 32.080633 , lng: 34.789022},
         mapTypeControl: false
     });
 	initPage(map);	
@@ -33,7 +33,6 @@ function onError(error) {
 function initPage(map){
 	$.ajax({
         url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-        timeout: 3000,
         data: {requestType :"mainMarkers"},
         success: function(location) {
             for(var i=0; i<location.length; i++) {
@@ -62,7 +61,9 @@ function initPage(map){
         error: function(lo){   console.log("error" + lo.message);}
     });
     var geocoder = new google.maps.Geocoder();
-    $('#address').keyup(function() {if (event.keyCode == 13) {geocodeAddress(map, geocoder);}});
+    document.getElementById('submit').addEventListener('click', function(){
+        geocodeAddress(map, geocoder);
+    });
     var centerControlDiv = document.createElement('button');
     centerControlDiv.className="btn-block";
     centerControlDiv.id="upperButton";
@@ -90,8 +91,8 @@ function initPage(map){
 function initMap() {
 	//navigator.geolocation.getCurrentPosition(onSuccess, onError);
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
-        center: {lat: 32.01 , lng: 34.789022},
+        zoom: 15,
+        center: {lat: 32.080633 , lng: 34.789022},
         mapTypeControl: false
     });
     initPage(map);
@@ -109,84 +110,49 @@ function toggleBounce(marker) {
 function changeButtons() {
     //check if signed in otherwise ask for login
     $($("#requestPointZone")).empty().append(
-            '<input  id= "requiredAddress" type="text" class="form-control"  placeholder=": הכנס יעד מבוקש" >'+
+            '<input  id= "requiredAddress" type="text" class="form-control"  placeholder=": הכנס עיר מבוקשת" >'+
 			'<input  id= "name" type="text" class="details"  placeholder=": שם" >'+
 			'<input  id= "phone" type="text" class="details"  placeholder=": טלפון" >'+
             '<div class="sendCloseConatiner" display="flex">' +
-            '<button type="button" id="close" class="btn btn-danger " style="font-family: Felix007, serif;"  onclick="backToRequestPointBtnAndCheck()">סגור</button>' +
-            '<button type="button" id="send" class="btn btn-info askButtons" onclick="sendAddress()">שלח</button>' +
+            '<button type="button" id="close" class="btn btn-danger" onclick="backToRequestPointBtn()">סגור</button>' +
+            '<button type="button" id="send" class="btn btn-info" onclick="sendAddress()">שלח</button>' +
             '</div>'
         );
-    $('#phone').keyup(function() {if (((event.keyCode < 48 || event.keyCode > 57) && event.keyCode != 8)) {alert("נא להכניס מספרים בלבד"); deleteLastChar() } });
     document.getElementById('map').style.height = '80%';
 }
 
-function backToRequestPointBtnAndCheck() {
-    $($("#requestPointZone")).empty().append(' <button class="btn btn-warning btn-block bigButton" onclick="changeButtons()" id="choiceList"> ' +
-        '<img src="img/inviteSalePoint.png" width="25%" height="115%" >הזמן נקודת מכירה</button>');
-    document.getElementById('map').style.height = '94%';
-}
-
-function deleteLastChar() {
-    $('#phone').val(
-        function(index, value){
-            return value.substr(0, value.length - 1);
-        })
-}
-
 function backToRequestPointBtn() {
-    $($("#requestPointZone")).empty();
+    $($("#requestPointZone")).empty().append(
+        '<button class="btn btn-info btn-block bigButton" onclick="changeButtons()" id="choiceList">הזמן נקודת מכירה</button>');
     document.getElementById('map').style.height = '100%';
 }
+
+function checkForCityValidation(data) {
+/*    if (data.length > 20){
+        return false;
+    }*/
+/*    console.log( String.includes(data ,["files/cities"]));
+    return false;*/
+};
 
 function sendAddress() {
     //check city validation
     var data = document.getElementById("requiredAddress").value;
-    var phoneNumber = document.getElementById("phone").value;
-    var name = document.getElementById("name").value;
-
-    if (checkValues(data, phoneNumber, name) ){
+    if (checkForCityValidation (data)){
         $.ajax({
             url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-            timeout: 3000,
-            data: {requestType :"sendNewAddress", newAddress: data, name: name,phone: phoneNumber },
+            data: {requestType :"sendNewAddress", newAddress: data},
             success: function() {
-                alert ("הבקשה נשלחה בהצלחה.ניתן לשלוח בקשה אחת בלבד בכל הפעלה של האפקליציה.");
+                alert ("הבקשה נשלחה בהצלחה.");
                 backToRequestPointBtn();
             },
             error: function(lo){
-                alert('אירעה שגיאה, נא נסה שוב');
+                alert('Please try again.');
                 console.log(lo);
             }
         });
     }
-}
-
-
-function checkValues(data, phone, name) {
-    if (data.length > 50){
-        alert("לא ניתן להכניס יותר מ50 תווים לבקשה");
-        return false;
+    else{
+        alert ("הבקשה לא נשלחה, נא לכתוב שוב את העיר המבוקשת בלבד. אם הודעה זו חוזרת מספר פעמים, נא עדכנו אותנו בפייסבוק.");
     }
-    else if (name.length > 20) {
-        alert("השם חייב להיות לכל היותר באורך 20 תווים");
-        return false;
-    }
-    else if (phone.length > 17) {
-        alert("נא להכניס מספרים בלבד");
-        return false;
-    }
-    else if (data.length  < 2){
-        alert("נא הכנס יעד מבוקש");
-        return false;
-    }
-    else if (name.length < 2) {
-        alert("נא הכנס שם תקין ליצירת קשר");
-        return false;
-    }
-    else if (phone.length < 10) {
-        alert("נא הכנס מספר טלפון תקין ליצירת קשר");
-        return false;
-    }
-    return true;
 }

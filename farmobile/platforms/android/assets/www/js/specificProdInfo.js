@@ -3,10 +3,9 @@ $(function(){
     var id = getUrlVars()["id"];
     $.ajax({
         url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-        timeout: 3000,
         data: {requestType :"getSpecificProdInfo", ProductID: id},
         success: function(information) {
-			var str =  information[0];
+			var str = "על התוצרת: " + information[0];
             document.getElementById('prodName').innerText = str;
 			information[1] != null ? document.getElementById('pricePerPack').innerText = information[1] : document.getElementById('pricePerPack').innerText = "כרגע אין מחיר עבור תוצר זה.";
 			information[2] != null ? document.getElementById('weightPerPack').innerText = information[2] : document.getElementById('weightPerPack').innerText = "כרגע אין משקל עבור תוצר זה.";
@@ -39,7 +38,7 @@ $(function(){
 });
 
 function setInnerHtmlText(id){
-	if (id == "weightPerPack" && once == 1){
+	if (id == weightPerPack && once == 1){
 		document.getElementById('first').className -= "active";
 		once = 0;
 	}
