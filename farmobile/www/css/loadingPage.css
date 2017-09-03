@@ -42,7 +42,6 @@
 
 #signPic{
 	background-image: url("../img/sign.png");
-	width: 100%;
     height: 100px;
     background-repeat: no-repeat;
 	margin-left: 15%;
