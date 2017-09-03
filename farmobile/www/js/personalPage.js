@@ -23,6 +23,7 @@ function addUpperMenu() {
     centerControlDiv.index = 1;
     document.body.appendChild(centerControlDiv);
 }
+
 function setZones(zones){
     var splited = zones.split(',');
     for (var i = 0; i < splited.length; i++) {
@@ -44,13 +45,11 @@ function checkVariables(callback) {
         if (window.location.href.indexOf('birthday') > 0){
             $("#newBday").val(vars['birthday']);
         }
-        $(".passwordZone").hide();
         if (vars['zones'] != "NULL"){
             setZones(vars['zones']);
         }
     }
 	callback();
-    
 }
 
 function updateInfo(){

@@ -9,16 +9,23 @@ $(function(){
         data: {requestType :"getSalePointData", idOfSalePoint: idOfSP},
         success: function(information) {
 			console.log(information);
+			var flag = 1;
+			
 			if (information[1] != null){
-				document.getElementById('updateText').innerText = "נקודת המכירה פעילה";
-				document.getElementById('activeSalePoint').checked = true;
 				var date = information[1].split("-");
-				document.getElementById('dateInput').innerText = date[2] + "." + date[1] + "." + date[0];
-				var time1 = information[2].split(":");
-				var time2 = information[3].split(":");
-				document.getElementById('timeInput').innerText =time1[0] + ":" + time1[1] + " - " +  time2[0] + ":" + time2[1];	
+				var currentDate = new Date();
+				if(currentDate.getFullYear() <= date[0] && currentDate.getMonth() + 1 <= date[1] && currentDate.getDate() <= date[2])
+				{
+					flag = 0;
+					document.getElementById('updateText').innerText = "נקודת המכירה פעילה";
+					document.getElementById('activeSalePoint').checked = true;
+					document.getElementById('dateInput').innerText = date[2] + "." + date[1] + "." + date[0];
+					var time1 = information[2].split(":");
+					var time2 = information[3].split(":");
+					document.getElementById('timeInput').innerText =time1[0] + ":" + time1[1] + " - " +  time2[0] + ":" + time2[1];
+				}
 			}
-			else{
+			if(flag){
 				document.getElementById('activeSalePoint').disabled = true;
 				document.getElementById('updateText').innerText = "נקודת המכירה אינה פעילה";
 				document.getElementById('dateInput').innerText = "אין תאריך למכירה זו";
@@ -199,7 +206,8 @@ function addComment(){
 	var idOfSP = getUrlVars()["id"];
 	var text = prompt("אנא הכנס תגובה - עד 8 מילים");
 	if(text != "" & text != null){
-		if (text.length <= 8){
+		var size = text.split(" ");
+		if (size.length <= 8){
 			$.ajax({
 			url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
 			timeout: 3000,
