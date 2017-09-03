@@ -1,3 +1,20 @@
+html {
+    background: url(../img/back.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body{
+    background-color: transparent;
+}
+
+.contain{
+	padding-left: 0;
+	padding-top: 5px;
+}
+
 .inputBtn{
     background-color: #b1b1b1;
     color: white;
@@ -7,6 +24,8 @@
     font-size: 20px;
     border-radius: 12px;
 	text-align: right;
+    width: fit-content;
+    white-space: pre-line;
 }
 
 .newFont{
@@ -45,11 +64,20 @@
 }
 
 #btnAnimate{
-    background-image: url("../img/alert.jpg");
+    background-image: url("../img/alert.png");
     background-repeat: no-repeat;
-    width: 85px;
-    height: 85px;
-	border: transparent;
+    width: 100px;
+    height: 109px;
+    background-color: transparent;
+    border: transparent;
+}
+
+.imgClass{
+	border-color: black;
+	border: 3px solid black;
+	border-radius: 100%;
+	background: aliceblue;
+	width: 120%;
 }
 
 .textlabel{
@@ -64,4 +92,150 @@
     -o-transition: 3s;
     transition: 3s;
     margin-left: 39% !important;
+}
+.animated.bounceInUp {
+    -webkit-animation-name: bounceInUp;
+    -moz-animation-name: bounceInUp;
+    -o-animation-name: bounceInUp;
+    animation-name: bounceInUp;
+}
+
+.animated {
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.acidjs-rating-stars,
+.acidjs-rating-stars label::before
+{
+    display: flex;
+}
+ 
+.acidjs-rating-stars label:hover,
+.acidjs-rating-stars label:hover ~ label
+{
+    color: #189800;
+}
+ 
+.acidjs-rating-stars *
+{
+    margin: 0;
+    padding: 0;
+}
+ 
+.acidjs-rating-stars input
+{
+    display: none;
+}
+ 
+.acidjs-rating-stars
+{
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+ 
+.acidjs-rating-stars label
+{
+    color: #ccc;
+}
+ 
+.acidjs-rating-stars label::before
+{
+    content: "\2605";
+    width: 22px;
+    line-height: 20px;
+    text-align: right;
+    font-size: 22px;
+    cursor: pointer;
+}
+ 
+.acidjs-rating-stars input:checked ~ label
+{
+    color: #f5b301;
+}
+ 
+.acidjs-rating-disabled
+{
+    opacity: .50;
+    -webkit-pointer-events: none;
+    -moz-pointer-events: none;
+    pointer-events: none;
+}
+
+h3 { 
+	font-size: 18px;
+    margin: 10px;
+    text-align: right;
+	font-family: 'Felix007', serif;
+ }
+ 
+#send{
+	position: absolute;
+    right: 50%;
+    width: 20%;
+}
+ 
+.ani1 { animation-delay:0.1s; -moz-animation-delay:0.1s; -webkit-animation-delay:0.1s; }
+.ani2 { animation-delay:0.2s; -moz-animation-delay:0.2s; -webkit-animation-delay:0.2s; }
+.ani3 { animation-delay:0.3s; -moz-animation-delay:0.3s; -webkit-animation-delay:0.3s; }
+.ani4 { animation-delay:0.4s; -moz-animation-delay:0.4s; -webkit-animation-delay:0.4s; }
+
+.bubble img {
+	float:right;
+    width:70px;
+    height:70px;
+    border-radius:10px;
+	display: flex;
+}
+
+.bubble-content {    
+	top: 15px;
+	font-size: 15px;
+	position:relative;
+	font-family: 'Felix007', serif;
+	float:right;
+	margin-right:12px;
+	width:fit-content;
+	padding:0px 20px;
+	border-radius:10px;
+	background-color:#FFFFFF;
+	box-shadow:1px 1px 5px rgba(0,0,0,.2);
+	display: flex;
+}
+
+.bubble {
+	margin-top:20px;
+}
+
+.point {
+	border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 9px solid darkgrey;
+    position: absolute;
+    top: 7px;
+    right: -10px;
+}
+ 
+.clearfix:after {
+	visibility:hidden;
+	display:block;
+	font-size:0;
+	content: ".";
+	clear:both;
+	height:0;
+	line-height:
+}
+
+* html .clearfix {
+	height: 1%;
+}
+
+#comment{
+	text-align: center;
 }

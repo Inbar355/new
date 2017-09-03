@@ -11,7 +11,7 @@ $(function(){
                 var img = document.createElement('img');
                 img.src = "img/farmer.png";
                 img.id = id[1];
-                img.style = " border-color: black;border: 3px solid black;border-radius: 100%;";
+                img.className = "imgClass";
                 img.onclick = function() { window.location.href = "personalFarmerInfo.html"+ "?id=" + this.id; };
                 var text = document.createElement('span');
                 text.innerText = id[0];
@@ -31,7 +31,7 @@ $(function(){
                 }
             }
         },
-        error: function(lo){   console.log("error " + lo.message);}
+    error: function(lo){   console.log("error " + lo.message);}
     });
     var centerControlDiv = document.createElement('button');
     centerControlDiv.className="btn-block";
@@ -51,7 +51,7 @@ $(function(){
     centerControlDiv.appendChild(rightLogo);
     centerControlDiv.index = 1;
     document.body.appendChild(centerControlDiv);
-
+    $("#upperButton").css({ 'background' : ''});
     setText();
 });
 

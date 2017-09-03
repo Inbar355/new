@@ -1,3 +1,11 @@
+html {
+    background: url(../img/back.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 .invisibleRow{
     border: none;
     background-color: transparent;
@@ -52,6 +60,13 @@
 
 .font{
 	font-family: 'Felix007', serif;
+}
+
+.imgClass{
+	border-color: black;
+	border: 3px solid black;
+	border-radius: 100%;
+	background: aliceblue;
 }
 
 

@@ -1,10 +1,10 @@
-body{
+html{
     margin:0;
     color:#6a6f8c;
     background:#c8c8c8;
     font:600 16px/18px 'Felix007', serif;
     font-size: 25px;
-    background: url(../img/background.jpg) no-repeat center;
+    background: url(../img/back.jpg) no-repeat center;
     background-size: contain;
     background-position-y: bottom;
 }
@@ -32,7 +32,7 @@ a{
     width:100%;
     margin:auto;
     max-width:80%;
-	min-height: 500px;
+    min-height: 500px;
     position:relative;
     box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
 }
@@ -97,10 +97,10 @@ a{
 .login-form .group .input,
 .login-form .group .button{
     width:130%;
-    color:#fff;
+    color:#333;
     display:block;
     font-size: 20px;
-	float: right;
+    float: right;
 }
 .login-form .group .input,
 .login-form .group .button{
@@ -117,7 +117,7 @@ a{
     color:black;
     font-family: 'Felix007', serif;
     font-size:25px;
-	padding-left: 45%;
+    padding-left: 45%;
 }
 .login-form .group .button{
     background:#1161ee;
@@ -187,7 +187,7 @@ a{
 
 .data-alert{
     text-align:center;
-    font-size: 25px;
+    font-size: 10px;
     font-family: 'Felix007', serif;
     color: red;
 }
@@ -197,6 +197,6 @@ a{
 }
 
 #FBpic{
-    height: 17%;
     margin-left: -38%;
 }
+

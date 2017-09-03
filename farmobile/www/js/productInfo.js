@@ -12,7 +12,7 @@ $(function(){
                 img.id = id[1];
                 var str = "img/" +  img.id + ".jpg";
                 img.src = str;
-                img.style = " border-color: black;border: 3px solid black;border-radius: 100%;";
+                img.className = "imgClass";
                 img.onclick = function() { window.location.href = "specificProduceInfo.html"+ "?id=" + this.id; };
                 var text = document.createElement('span');
                 text.innerText = id[0];

@@ -13,14 +13,14 @@
     <script src="js/productInfo.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
-<body>
+<body style="background-position-y: bottom">
 
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
     <table>
         <tr>
-            <td><div class="col-xs-4"></div> <img id="welcomeImg" src="img/face.jpg">
-                <a id="userName"></a></td>
+            <td><div class="col-xs-4"></div> <img id="welcomeImg" src="img/face.jpg" onclick="myDetails()">
+                <a id="userName" onclick="myDetails()"></a></td>
         </tr>
         <tr>
             <td><a href="mainPage.html">פירוט נקודות מכירה  <img src="img/fruit_car.jpg"></a></td>
@@ -45,6 +45,7 @@
         </tr>
     </table>
 </div>
+<div class="background"><img src="img/back.jpg" width="100%" style="height: -webkit-fill-available;"/></div>
 <br><br><br><br><br>
 
 <div class="container animated ani1">

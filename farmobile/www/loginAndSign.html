@@ -4,8 +4,6 @@
     <meta http-equiv="Content-Security-Policy" content="default-src * gap: ws: https://ssl.gstatic.com;script-src 'self' 'unsafe-inline' 'unsafe-eval' * data: blob:;style-src 'self' 'unsafe-inline' * data: blob:;img-src * data: 'unsafe-inline' 'self' content:;">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="initial-scale=1, width = device-width">
-    <link rel="stylesheet" href="css/sideAndUpperMenuCSS.css">
-    <link rel="stylesheet" href="css/signupAndSigninCSS.css">
 	<link href='http://serve.fontsproject.com/css?family=Felix007:400'rel='stylesheet' type='text/css'>
     <script src="js/jquery-2.0.3.min.js"></script>
     <script src="js/sideAndUpperMenuScript.js"></script>
@@ -14,6 +12,8 @@
     <script src="cordova.js"></script>
     <script src="phonegap.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/sideAndUpperMenuCSS.css">
+    <link rel="stylesheet" href="css/signupAndSigninCSS.css">
 </head>
 <body>
 
@@ -56,11 +56,11 @@
         <div class="login-form">
             <div class="sign-in-htm">
                 <div class="group">
-                    <label for="loginUserName" class="label" style=" margin-right: 19%;">: שם משתמש</label>
+                    <label for="loginUserName" class="label" style=" margin-right: 19%;color: black;">: שם משתמש</label>
                     <input id="loginUserName" type="text" class="input text_align">
                 </div>
                 <div class="group">
-                    <label for="loginPassword" class="label">: סיסמה</label>
+                    <label for="loginPassword" class="label" style="color: black;">: סיסמה</label>
                     <input id="loginPassword" type="password" class="input text_align" data-type="password">
                 </div>
                 <div class="group">
@@ -68,7 +68,7 @@
                     <label for="check"><span class="icon"></span> השאר אותי מחובר</label>
                 </div>
                 <div class="group">
-                    <input type="submit" class="button" value="Sign  In" onclick="Login()">
+                    <input type="submit" class="button" value="Sign  In" style="color: whitesmoke;" onclick="Login()">
                 </div>
 				<br><br><br><br>
 				<img id="FBpic" src="img/connectVIAFB.png" onclick="loginToFB()">
@@ -102,7 +102,7 @@
                 </div>
 				<button class="btn btn-block invisibleRow" disabled></button>
                 <div class="group">
-                    <input type="submit" class="button" value="Sign Up" onclick="signUp()">
+                    <input type="submit" class="button" value="Sign Up" style="color: whitesmoke" onclick="signUp()">
                 </div>
 				<button class="btn btn-block invisibleRow" disabled></button>
                 <div class="foot-lnk">

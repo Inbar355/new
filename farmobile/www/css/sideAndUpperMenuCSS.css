@@ -100,3 +100,11 @@ table {
     -moz-border-radius:100%;
     border-radius: 100%;
 }
+
+.background {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    min-width: 100%;
+    z-index: -10000;
+}

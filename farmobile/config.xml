@@ -76,5 +76,4 @@
         <variable name="SENDER_ID" value="com.farmobileapp" />
     </plugin>
     <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" />
-	<plugin name="phonegap-plugin-push" spec="2.0.0" />
 </widget>

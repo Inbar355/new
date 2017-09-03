@@ -25,8 +25,8 @@ $(function(){
             timeout: 3000,
             data: {requestType :"isUserLogIn", userName: sessionStorage.getItem('userLogin')},
             success: function(array) {
-                if(array[0] != 0)//user already log In to the system
-                    window.location.href = "personalPage.html" + "?id=" + array[0];
+                if(array[0] != 0)//user already log Into the system
+                    window.location.href = "mainPage.html";
             },
             error: function(lo){   console.log("error" + lo.message);}
         });
@@ -40,29 +40,53 @@ function Login() {
     document.getElementById('dataMissMatch').innerText = "";
     var userName = document.getElementById('loginUserName').value;
     var userPassword = document.getElementById('loginPassword').value;
-	var check = document.getElementById('check').checked;
+    ajaxForLogin(userName, userPassword);
+}
+
+function loginToFB() {
+    try {
+        facebookConnectPlugin.login(["public_profile"], function (response) {
+            facebookConnectPlugin.api('/me?fields=age_range,name,picture{url},id',["public_profile"], function (data) {
+           /*     cahngeProfilePic(data.picture.data.url);*/
+                ajaxForLogin(data.id, null, data.name, data.age_range.min);
+            });
+        }, function (er) {
+            console.log("error : " + er);
+        })
+    }
+    catch (Err){
+        console.log("loginToFB error cought " + Err.message);
+    }
+}
+
+function ajaxForLogin(userName, userPassword, FBname, FBBDay){
+    var check = document.getElementById('check').checked;
     $.ajax({
         url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
         timeout: 3000,
         data: {requestType :"userLogin", userName: userName, userPass: userPassword},
         success: function(array) {
-            if(array[0] == -1)//user name + password doesn't found
-                document.getElementById('dataMissMatch').innerText = ".שם משתמש זה אינו קיים, אנא הרשם *";
+            if(array[0] == -1) {//user name + password doesn't found
+                if (FBname == null){
+					document.getElementById('dataMissMatch').innerText = ".שם משתמש זה אינו קיים, אנא הרשם *";
+					deleteLogin();
+				}
+                else
+                    ajaxForSignUp(FBname, userPassword, userName, FBBDay, "");
+            }
             else{
                 if(array[1] == 1) {//the user exists
-					if(check)
-						sessionStorage.setItem('userLogin', userName);
-					window.location.href = "personalPage.html" + "?id=" + array[0];
+                    if(check) 
+						FBname == null ? sessionStorage.setItem('userLogin', userName) : sessionStorage.setItem('userLogin', FBname);
+                    window.location.href = "mainPage.html";
                 }
-                else{
+                else
                     document.getElementById('dataMissMatch').innerText = ".ישנה אי התאמה בין שם המשתמש לסיסמה *"
-                }
             }
         },
         error: function(lo){ console.log("error" + lo.message); }
     });
 }
-
 
 function signUp() {
     document.getElementById('dataMissing').innerText = "";
@@ -79,58 +103,30 @@ function signUp() {
         document.getElementById('dataMissing').innerText = ".סיסמאות אינן זהות *";
     else if(userPassword1.length > 8)
         document.getElementById('dataMissing').innerText = ".נדרשת סיסמה עד 8 תווים *";
-        else if (fullName == "admin")
+	else if (fullName == "admin")
         document.getElementById('dataMissing').innerText = "אסור להשתמש בשם שנבחר, נא לבחור שם אחר";
-    else{
-        $.ajax({
-            url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-            timeout: 3000,
-            data: {requestType :"userSign", userName: userName, userPass: userPassword1,
-            name: fullName, date: date, add: address},
-            success: function(array) {
-                if(array[0] == 0)//user name already exists
-                    document.getElementById('dataMissing').innerText = ".שם משתמש זה תפוס, אנא בחר חדש *";
-                else{
-                    sessionStorage.setItem('userLogin', userName);
-                    window.location.href = "personalPage.html" + "?id=" + array[0];
-                }
-            },
-            error: function(lo){ console.log("error" + lo.message); }
-        });
-    }
+    else
+        ajaxForSignUp(userName, userPassword1,fullName,date,address);
 }
 
-function loginToFB() {
-    try {
-        facebookConnectPlugin.login(["public_profile"], function (response) {
-            facebookConnectPlugin.api('/me',["public_profile"], function (data) {
-                statusChangeCallback(data);
-            });
-        }, function (er) {
-            console.log("error : " + er);
-        })
-    }
-    catch (Err){
-        console.log("loginToFB error cought " + Err.message);
-    }
-}
-
-function statusChangeCallback(response) {
-	//for US to check
-	console.log('Successful login for: ' + response.name);
-    console.log('Successful login for: ' + response.id);
-	$.ajax({
-		url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+function ajaxForSignUp(userName, userPassword1,fullName ,date, address) {
+    $.ajax({
+        url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
         timeout: 3000,
-        data: {requestType :"userSignViaFacebook", userName: response.name, userFaceID: response.userID},
+        data: {requestType :"userSign", userName: userName, userPass: userPassword1,
+            name: fullName, date: date, add: address},
         success: function(array) {
-			sessionStorage.setItem('userLogin', response.name);
-            window.location.href = "personalPage.html" + "?id=" + array[0];
+            if(array[0] == 0)//user name already exists
+                document.getElementById('dataMissing').innerText = ".שם משתמש זה תפוס, אנא בחר חדש *";
+				
+            else{
+                sessionStorage.setItem('userLogin', userName);
+				window.location.href = "mainPage.html";
+            }
         },
         error: function(lo){ console.log("error" + lo.message); }
-	});
+    });
 }
-
 
 function deleteSignIn(){
 	document.getElementById("loginImg").style.minHeight = "500px";
@@ -141,7 +137,6 @@ function deleteSignIn(){
     document.getElementById('signFullName').value = "";
     document.getElementById('signBDay').value = "";
     document.getElementById('signAddress').value = "";
-
 }
 
 function deleteLogin(){
@@ -150,4 +145,3 @@ function deleteLogin(){
     document.getElementById('loginUserName').value = "";
     document.getElementById('loginPassword').value = "";
 }
-

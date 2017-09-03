@@ -10,7 +10,6 @@ function geocodeAddress(resultsMap, geocoder) {
     });
 }
 
-
 function onSuccess(position) {
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 12,
@@ -86,7 +85,6 @@ function initPage(map){
     setText();
 }
 
-
 function initMap() {
 	//navigator.geolocation.getCurrentPosition(onSuccess, onError);
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -95,6 +93,7 @@ function initMap() {
         mapTypeControl: false
     });
     initPage(map);
+
 }
 
 function toggleBounce(marker) {
@@ -105,6 +104,10 @@ function toggleBounce(marker) {
     }
 }
 
+function changeForAskButton() {
+    $($("#requestPointZone")).empty().append('<img id="smallTrack" src="img/inviteSalePoint.png" onclick="backToRequestPointBtnAndCheck()" >');
+    document.getElementById('map').style.height = '100%';
+}
 
 function changeButtons() {
     //check if signed in otherwise ask for login
@@ -113,7 +116,7 @@ function changeButtons() {
 			'<input  id= "name" type="text" class="details"  placeholder=": שם" >'+
 			'<input  id= "phone" type="text" class="details"  placeholder=": טלפון" >'+
             '<div class="sendCloseConatiner" display="flex">' +
-            '<button type="button" id="close" class="btn btn-danger " style="font-family: Felix007, serif;"  onclick="backToRequestPointBtnAndCheck()">סגור</button>' +
+            '<button type="button" id="close" class="btn btn-danger " style="font-family: Felix007, serif;"  onclick="changeForAskButton()">סגור</button>' +
             '<button type="button" id="send" class="btn btn-info askButtons" onclick="sendAddress()">שלח</button>' +
             '</div>'
         );
@@ -122,9 +125,9 @@ function changeButtons() {
 }
 
 function backToRequestPointBtnAndCheck() {
-    $($("#requestPointZone")).empty().append(' <button class="btn btn-warning btn-block bigButton" onclick="changeButtons()" id="choiceList"> ' +
-        '<img src="img/inviteSalePoint.png" width="25%" height="115%" >הזמן נקודת מכירה</button>');
-    document.getElementById('map').style.height = '94%';
+    $($("#requestPointZone")).empty().append(' <button class="btn btn-warning btn-block bigButton" onclick="changeButtons()" id="orderButton">הזמן נקודת מכירה</button>'
+	+ '<button class="" onclick="changeForAskButton()" id = "closeBtn" >X</button>');
+    document.getElementById('map').style.height = '93%';
 }
 
 function deleteLastChar() {
@@ -161,7 +164,6 @@ function sendAddress() {
         });
     }
 }
-
 
 function checkValues(data, phone, name) {
     if (data.length > 50){

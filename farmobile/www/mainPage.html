@@ -4,22 +4,22 @@
 <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src 'self' 'unsafe-inline' *; img-src * data: 'unsafe-inline'">
 <meta name="viewport" content="width=device-width, height= device-height, initial-scale=1">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="css/mainCSS.css">
-    <link rel="stylesheet" href="css/sideAndUpperMenuCSS.css">
 	<link href='http://serve.fontsproject.com/css?family=Felix007:400' rel='stylesheet' type='text/css'>
     <script src="js/mainScript.js"></script>
     <script src="js/sideAndUpperMenuScript.js"></script>
     <script src="js/jquery-2.0.3.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mainCSS.css">
+    <link rel="stylesheet" href="css/sideAndUpperMenuCSS.css">
 </head>
 <body>
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
     <table>
         <tr>
-            <td><div class="col-xs-4"></div> <img id="welcomeImg" src="img/face.jpg"><br>
-                <a id="userName"></a></td>
+            <td><div class="col-xs-4"></div> <img id="welcomeImg" src="img/face.jpg" onclick="myDetails()"><br>
+                <a id="userName" onclick="myDetails()"></a></td>
         </tr>
         <tr>
             <td><a href="mainPage.html">פירוט נקודות מכירה  <img src="img/fruit_car.jpg"></a></td>
@@ -50,11 +50,16 @@
 </div>
 <div id="map"></div>
 <span id="requestPointZone">
-     <button class="btn btn-warning btn-block bigButton" onclick="changeButtons()" id="choiceList">
-         <img src="img/inviteSalePoint.png" width="25%" height="115%" >הזמן נקודת מכירה</button>
+         <img id="smallTrack" src="img/inviteSalePoint.png" onclick="backToRequestPointBtnAndCheck()" >
 </span>
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADlk_CtGRjQOGs3fk8NjG9yVQwj4xPxnI&callback=initMap">
+</script>
+<script>
+    document.addEventListener("backbutton", onBackKeyDown, false);
+    function onBackKeyDown(e) {
+        e.preventDefault();
+    }
 </script>
 </body>
 </html>

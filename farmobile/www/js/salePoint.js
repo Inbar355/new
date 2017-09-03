@@ -2,13 +2,13 @@ var address = null;
 var ln;
 
 $(function(){
-	ready = 0;
     var idOfSP = getUrlVars()["id"];
     $.ajax({
         url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
         timeout: 3000,
         data: {requestType :"getSalePointData", idOfSalePoint: idOfSP},
         success: function(information) {
+			console.log(information);
 			if (information[1] != null){
 				document.getElementById('updateText').innerText = "נקודת המכירה פעילה";
 				document.getElementById('activeSalePoint').checked = true;
@@ -27,6 +27,8 @@ $(function(){
 			
 			address = information[0];
             document.getElementById('addressInput').innerText =information[0];
+			information[8] == 0 ? document.getElementById('rankInput').innerText = 0 
+			: document.getElementById('rankInput').innerText = information[7]/information[8];
 			
             if (information[4] == null){
                 document.getElementById('pointComment').style.display = "none";
@@ -35,8 +37,43 @@ $(function(){
             else{
                 document.getElementById('pointComment').innerText = information[4];
             }
+			/*
             var btn = document.getElementById('btnAnimate');
             btn.classList.add('horizTranslate');
+			*/
+			if(information[6] != "")
+			{
+				var produce = information[6].split(",");
+				for(var i = 0; i < produce.length; i++){
+					var id = produce[i];
+					var container = document.createElement('div');
+					container.className = "contain col-xs-3";
+					var img = document.createElement('img');
+					img.id = id;
+					var str = "img/" +  img.id + ".jpg";
+					img.src = str;
+					img.className = "imgClass";
+					img.onclick = function() { window.location.href = "specificProduceInfo.html"+ "?id=" + this.id; };
+					container.appendChild(img);
+					document.body.appendChild(container);
+					if (i%1 ==0 || i%2 ==0){
+						container.className += " ani1 animated bounceInUp";
+					}if (i%3 ==0 || i%4 ==0){
+						container.className +=" ani2 animated bounceInUp";
+					}if (i%5 ==0 || i%6 ==0){
+						container.className +=" ani3 animated bounceInUp";
+					}if (i%7 ==0 || i%8 ==0){
+						container.className += " ani4 animated bounceInUp";
+					}
+				}
+			}
+			var insert = document.getElementById('commentContainer');
+			if (information[9] != ""){
+				var comments = information[9].split("@");
+				for(var i = 0; i < comments.length; i++)
+					if(comments[i] != "")
+						createUsersComment(insert, comments[i]);
+			}
         },
         error: function(lo){   console.log("error" + lo.message);
         alert (lo);}
@@ -59,12 +96,33 @@ $(function(){
     centerControlDiv.appendChild(rightLogo);
     centerControlDiv.index = 1;
     document.body.appendChild(centerControlDiv);
-
+	
     setText();
 });
 
+function createUsersComment(insertInto, text){
+	var img = document.createElement('img');
+	img.src = "img/rightLogo.png";
+	var content = document.createElement('div');
+	content.className = "bubble-content";
+	var point = document.createElement('div');
+	point.className = "point";
+	var data = document.createElement('p');
+	var node = document.createTextNode(text);
+	data.appendChild(node);
+	content.appendChild(point);
+	content.appendChild(data);
+	insertInto.appendChild(img);
+	insertInto.appendChild(content);
+	var newLine = document.createElement('button');
+	newLine.className = "btn btn-block invisibleRow";
+	newLine.disabled = true;
+	insertInto.appendChild(newLine);
+	
+}
+
 function setPushMsg(){
-    //check if the user already signed - else he need to sign in
+	    //check if the user already signed - else he need to sign in
     //change the owner to the uniqe id
     var idOfSP = getUrlVars()["id"];
     $.ajax({
@@ -112,25 +170,50 @@ function navigate(){
 	}
 }
 
-function faceBookShare() {
-    alert("shring..");
+function sendRank(){
+	var idOfSP = getUrlVars()["id"];
+	var rank = 0;
+	if (document.getElementById("group1").checked)
+		rank = 5;
+	else if (document.getElementById("group2").checked)
+		rank = 4;
+	else if (document.getElementById("group3").checked)
+		rank = 3;
+	else if (document.getElementById("group4").checked)
+		rank = 2;
+	else if (document.getElementById("group5").checked)
+		rank = 1;
+	$.ajax({
+        url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+		timeout: 3000,
+        data: {requestType :"updateSalePointRank", idOfSalePoint: idOfSP, newRank: rank},
+        success: function(newAvg) {
+			document.getElementById('rankInput').innerText = newAvg;
+			alert("! תודה שדירגת");
+        },
+        error: function(lo){ console.log("error" + lo.message);}
+    });
 }
 
-function calendar(){
-	alert("calandar");
-	var options = {
-	url: 'https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin',
-	calendarName: calendarName, // iOS specific
-	calendarId: 1 // Android specific
-	};
-	var startDate = new Date(2017,8,30,18,30,0,0,0); // beware: month 0 = january, 11 = december
-	var endDate = new Date(2017,8,30,19,30,0,0,0);
-	var title = "My nice event";
-	var success = function(message) { alert("Success: " + JSON.stringify(message)); };
-	var error = function(message) { alert("Error: " + message); };
-	 window.plugins.calendar.createEvent(title,startDate,endDate,success,error);
-	window.plugins.calendar.createEventWithOptions(title, startDate, endDate, options, success, error);
-
+function addComment(){
+	var idOfSP = getUrlVars()["id"];
+	var text = prompt("אנא הכנס תגובה - עד 8 מילים");
+	if(text != "" & text != null){
+		if (text.length <= 8){
+			$.ajax({
+			url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+			timeout: 3000,
+			data: {requestType :"addSalePointComment", idOfSalePoint: idOfSP, comment: text},
+			success: function() {
+				var insert = document.getElementById('commentContainer');
+				createUsersComment(insert, text);			
+			},
+			error: function(lo){ console.log("error" + lo.message);}
+			});
+		}
+		else
+			alert("אורך תגובה אינו חוקי.");	
+	}
 }
 
 $(document).on("deviceready", init);

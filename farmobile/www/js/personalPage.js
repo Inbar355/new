@@ -1,15 +1,9 @@
 $(function(){
-    var id = getUrlVars()["id"];
-    $.ajax({
-        url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-        timeout: 3000,
-        data: {requestType :"getUserName", id: id},
-        success: function(information) {
-            document.getElementById('personalName').innerText = " שלום: " + information[0];
-        },
-        error: function(lo){   
-		document.getElementById('personalName').innerText = lo.message;}
-    });
+    checkVariables(addUpperMenu);
+    setText();
+});
+
+function addUpperMenu() {
     var centerControlDiv = document.createElement('button');
     centerControlDiv.className="btn-block";
     centerControlDiv.id="upperButton";
@@ -28,9 +22,36 @@ $(function(){
     centerControlDiv.appendChild(rightLogo);
     centerControlDiv.index = 1;
     document.body.appendChild(centerControlDiv);
+}
+function setZones(zones){
+    var splited = zones.split(',');
+    for (var i = 0; i < splited.length; i++) {
+        document.getElementById(splited[i]).setAttribute('checked', true);
+    }
+}
 
-    setText();
-});
+function checkVariables(callback) {
+    var vars = {};
+	document.getElementById('personalName').innerText =  " שלום " + sessionStorage.getItem('userLogin');
+	
+    if (window.location.href.indexOf('fullName') > 0){
+       window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/g, function(m,key,value) {
+            vars[key] = decodeURIComponent(value);
+        });
+        if (window.location.href.indexOf('address') > 0){
+            $("#newAdd").val(vars['address']);
+        }
+        if (window.location.href.indexOf('birthday') > 0){
+            $("#newBday").val(vars['birthday']);
+        }
+        $(".passwordZone").hide();
+        if (vars['zones'] != "NULL"){
+            setZones(vars['zones']);
+        }
+    }
+	callback();
+    
+}
 
 function updateInfo(){
     var id = getUrlVars()["id"];
@@ -38,15 +59,17 @@ function updateInfo(){
     var newPass = document.getElementById("newPass").value;
     var newPass2 = document.getElementById("newPass2").value;
     var newBDay = document.getElementById("newBday").value;
-    if((newPass != "" && newPass2 == "") || (newPass == "" && newPass2 != "") || newPass != newPass2)
+    var zones = getPlaces();
+    if($(".passwordZone").css( "display" ) != "none "&&((newPass != "" && newPass2 == "") || (newPass == "" && newPass2 != "") || newPass != newPass2)){
         document.getElementById('alertInfoLabel').innerText = "ישנה אי התאמה בין הסיסמאות.";
+    }
     else {
         $.ajax({
             url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
             timeout: 3000,
             data: {
                 requestType: "updateInfo", id: id,
-                Add: newAdd, Pass: newPass, Bday: newBDay},
+                Add: newAdd, Pass: newPass, Bday: newBDay, Zones: zones.toString()},
             success: function (info) {
                 document.getElementById('alertInfoLabel').innerText = "הפרטים עודכנו כנדרש";
             },
@@ -58,31 +81,33 @@ function updateInfo(){
     }
 }
 
-function updatePlaces(){
+function getPlaces(){
     var id = getUrlVars()["id"];
     var arr = [];
     if(document.getElementById("south").checked)
-        arr.add("south");
+        arr.push("south");
     if(document.getElementById("shfela").checked)
-        arr.add("shfela");
+        arr.push("shfela");
     if(document.getElementById("center").checked)
-        arr.add("center");
+        arr.push("center");
     if(document.getElementById("sharon").checked)
-        arr.add("sharon");
+        arr.push("sharon");
     if(document.getElementById("haifa").checked)
-        arr.add("haifa");
+        arr.push("haifa");
     if(document.getElementById("jerusalem").checked)
-        arr.add("jerusalem");
+        arr.push("jerusalem");
     if(document.getElementById("north").checked)
-        arr.add("north");
+        arr.push("north");
 
-    ///???
-
-
+    if(arr.length ==0){
+        arr = "NULL";
+    }
+    return arr;
 }
 
 function logOut(){
     sessionStorage.removeItem('userLogin');
+ /*   cahngeProfilePic("img/face.jpg");*/
     window.location.href = "loginAndSign.html";
     //clean also cookie not just session
 }

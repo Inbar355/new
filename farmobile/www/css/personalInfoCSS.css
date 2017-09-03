@@ -1,5 +1,3 @@
-body {margin:0;}
-
 .active {
     background-color: cornflowerblue;
 }
@@ -23,7 +21,8 @@ body {margin:0;}
     border-style: solid;
 }
 
-#prodName{
+
+.itemName{
     color: black;
     background-color: whitesmoke;
     text-align: center;
@@ -32,6 +31,10 @@ body {margin:0;}
     border-radius: 12px;
     border-color: black;
     border-style: solid;
+    position: absolute;
+    right: 25%;
+    top: 83%;
+    width: 25%;
 }
 
 .spacial2 {
@@ -45,23 +48,7 @@ body {margin:0;}
 .imgHolder {
     position: relative;
 }
-#prodName {
-    position: absolute;
-    right: 25%;
-    top: 83%;
-    width: 25%;
-}
 
-#farmersName {
-    position: absolute;
-    right: 7%;
-    top: 94%;
-    width: 20%;
-}
-
-#myImage {
-    width: 100%;
-}
 
 .info {
     -webkit-column-count: 3; /* Chrome, Safari, Opera */
@@ -110,8 +97,10 @@ body {margin:0;}
 }
 }
 
-#productPic{
+.mainPic{
     border-radius: 100%;
     border-color: black;
     border: 3px solid black;
 }
+
+

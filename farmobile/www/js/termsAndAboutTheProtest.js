@@ -32,7 +32,6 @@ function initTermsAndInfo() {
     else{
         reqFor = "aboutTheProtest";
     }
-	
 	ajaxForProtestInfo (reqFor, function(value) {
         console.log(value);
      if (value.includes("error")){

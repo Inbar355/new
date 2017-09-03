@@ -5,14 +5,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!--<meta name="viewport" content="initial-scale=1, width = device-width, height= device-height">-->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable= no,height= device-height" />
-    <link rel="stylesheet" href="css/salePointCSS.css">
-    <link rel="stylesheet" href="css/sideAndUpperMenuCSS.css">
     <link href='http://serve.fontsproject.com/css?family=Felix007:400'rel='stylesheet' type='text/css'>
+
     <script src="js/jquery-2.0.3.min.js"></script>
     <script src="js/sideAndUpperMenuScript.js"></script>
     <script src="js/salePoint.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/salePointCSS.css">
+    <link rel="stylesheet" href="css/sideAndUpperMenuCSS.css">
 	<script type="text/javascript" src="cordova.js"></script>
     <title>Sale Point</title>
 </head>
@@ -21,8 +22,8 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
     <table>
         <tr>
-            <td><div class="col-xs-4"></div> <img id="welcomeImg" src="img/face.jpg">
-                <a id="userName"></a></td>
+            <td><div class="col-xs-4"></div> <img id="welcomeImg" src="img/face.jpg" onclick="myDetails()">
+                <a id="userName" onclick="myDetails()"></a></td>
         </tr>
 		<tr>
             <td><a href="mainPage.html">פירוט נקודות מכירה  <img src="img/fruit_car.jpg"></a></td>
@@ -55,16 +56,13 @@
 <button class="btn btn-block invisibleRow" disabled></button>
 
 <div align="right">
-    <div class="col-xs-3"></div>
-    <div class="col-xs-3">
-        <input type="image" onclick="faceBookShare()" src="img/faceBook.jpg">
-    </div>
+    <div class="col-xs-5"></div>
     <div class="col-xs-3">
 		<a onclick="navigate()"><img src="img/waze.png"></a>	
     </div>
 </div>
-    <button class="btn btn-block invisibleRow" disabled></button>
-    <button class="btn btn-block invisibleRow" disabled></button>
+<button class="btn btn-block invisibleRow" disabled></button>
+<button class="btn btn-block invisibleRow" disabled></button>
 <div align="right">
     <div class="col-xs-2"></div>
     <div class="col-xs-10">
@@ -118,14 +116,53 @@
     </div>
 </div>
 <button class="btn btn-block invisibleRow" disabled></button>
+<div align="right">
+    <div class="col-xs-7">
+        <button id="rankInput"class="inputBtn btn-block" disabled></button>
+    </div>
+    <div class="col-xs-5">
+        <button type="button" class="newFont btn-block" disabled>: דירוג</button>
+    </div>
+</div>
 <button class="btn btn-block invisibleRow" disabled></button>
-<button type="button" class="newFont btn-block" id = "calendar">: לוח שנה</button>
-<div class="col-xs-1"></div>
+<!-- <div class="col-xs-1"></div>
 <div class="col-xs-6">
 	<label class="textlabel">: לחץ על מנת לקבל תזכורת עבור נקודת מכירה זו</label>
 </div>
 <button class="btn btn-block invisibleRow" disabled></button>
-<button type="button" id="btnAnimate" class="btn btn-default btn-lg" onclick="setPushMsg()"></button>
+<button type="button" id="btnAnimate" class="btn btn-default btn-lg" onclick="setPushMsg()"></button> -->
+<h3>: דרגו נקודת מכירה זו</h3>
+<br>
+<div class="acidjs-rating-stars">
+    <form>
+        <input type="radio" name="group-1" id="group1" value="5" /><label for="group1"></label>
+        <input type="radio" name="group-1" id="group2" value="4" /><label for="group2"></label>
+        <input type="radio" name="group-1" id="group3" value="3" /><label for="group3"></label>
+        <input type="radio" name="group-1" id="group4" value="2" /><label for="group4"></label>
+        <input type="radio" name="group-1" id="group5"  value="1" /><label for="group5"></label>
+		<button type="button" id="send" class="btn btn-warning" onclick="sendRank()">דרג</button>
+    </form>
+</div>
+<button class="btn btn-block invisibleRow" disabled></button>
+<button class="btn btn-block invisibleRow" disabled></button>
+<div class="col-xs-2"></div>
+<div class="col-xs-10">
+	<button type="button" class="newFont btn-block" disabled>: חוות-דעת לקוחות </button>
+</div>
+<div class="bubble-list">
+	<div class="bubble clearfix" id="commentContainer"></div>
+</div>
+<div class="col-xs-2"></div>
+<div class="col-xs-10">
+	<button id="comment" class="inputBtn btn-block" onclick="addComment()">הוסף תגובה</button>
+</div>
+<button class="btn btn-block invisibleRow" disabled></button>
+<button class="btn btn-block invisibleRow" disabled></button>
+<div class="col-xs-2"></div>
+<div class="col-xs-10">
+	<button type="button" class="newFont btn-block" disabled>: מידע אודות התוצרת בה</button>
+</div>
+</div>
 </div>
 </body>
 </html>
