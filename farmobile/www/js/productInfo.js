@@ -1,7 +1,6 @@
 $(function(){
     $.ajax({
-        // url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-        url: "45.56.108.79:8080/APPserver/clientServlet",
+        url: "http://45.56.108.79:8080/APPserver/clientServlet",
         data: {requestType :"getProductInfo"},
         success: function(information) {
             for(var i=0; i<information.length; i++) {

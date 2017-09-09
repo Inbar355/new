@@ -49,8 +49,7 @@ function initTermsAndInfo() {
 
 function ajaxForProtestInfo (reqFor, callback){
 	 $.ajax({
-         // url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-         url: "45.56.108.79:8080/APPserver/clientServlet",
+        url: "http://45.56.108.79:8080/APPserver/clientServlet",
         data: {requestType :"getAboutTheProtest", requsetFor: reqFor},
 		      error: function (error) {
             console.error("Failed to get ajax response : " + error);

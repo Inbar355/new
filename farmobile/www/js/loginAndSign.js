@@ -21,8 +21,7 @@ $(function(){
     if(sessionStorage.getItem('userLogin')) {
         document.getElementById("userName").innerHTML = " שלום " + sessionStorage.getItem('userLogin');
         $.ajax({
-            // url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-            url: "45.56.108.79:8080/APPserver/clientServlet",
+            url: "http://45.56.108.79:8080/APPserver/clientServlet",
             data: {requestType :"isUserLogIn", userName: sessionStorage.getItem('userLogin')},
             success: function(array) {
                 if(array[0] != 0)//user already log Into the system
@@ -69,8 +68,7 @@ function loginToFB() {
 function ajaxForLogin(userName, userPassword, FBname, FBBDay){
     var check = document.getElementById('check').checked;
     $.ajax({
-        // url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-        url: "45.56.108.79:8080/APPserver/clientServlet",
+        url: "http://45.56.108.79:8080/APPserver/clientServlet",
         data: {requestType :"userLogin", userName: userName, userPass: userPassword},
         success: function(array) {
             if(array[0] == -1) {//user name + password doesn't found
@@ -123,8 +121,7 @@ function signUp() {
 
 function ajaxForSignUp(userName, userPassword1,fullName ,date, address) {
     $.ajax({
-        // url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-        url: "45.56.108.79:8080/APPserver/clientServlet",
+        url: "http://45.56.108.79:8080/APPserver/clientServlet",
         data: {requestType :"userSign", userName: userName, userPass: userPassword1,
             name: fullName, date: date, add: address},
         success: function(array) {

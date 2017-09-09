@@ -8,8 +8,7 @@ $(function(){
 	}, 600);
     var idOfSP = getUrlVars()["id"];
     $.ajax({
-		// url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-		url: "45.56.108.79:8080/APPserver/clientServlet",
+		url: "http://45.56.108.79:8080/APPserver/clientServlet",
         data: {requestType :"getSalePointData", idOfSalePoint: idOfSP},
         success: function(information) {
 			console.log(information);
@@ -48,10 +47,6 @@ $(function(){
             else{
                 document.getElementById('pointComment').innerText = information[4];
             }
-			/*
-            var btn = document.getElementById('btnAnimate');
-            btn.classList.add('horizTranslate');
-			*/
 			if(information[6] != "")
 			{
 				var produce = information[6].split(",");
@@ -138,8 +133,7 @@ function setPushMsg(){
     //change the owner to the uniqe id
     var idOfSP = getUrlVars()["id"];
     $.ajax({
-		// url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-		url: "45.56.108.79:8080/APPserver/clientServlet",
+		url: "http://45.56.108.79:8080/APPserver/clientServlet",
         data: {requestType :"getNotificationToSalePoint", idOfPage: idOfSP, owner: "1A2S3D4F5F"},
         error: function (error) {
             console.error("Failed to get ajax response : " + error);
@@ -190,8 +184,7 @@ function sendRank(){
 	var idOfSP = getUrlVars()["id"];
 	if (currentRating != null){
 		$.ajax({
-			// url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-			url: "45.56.108.79:8080/APPserver/clientServlet",
+			url: "http://45.56.108.79:8080/APPserver/clientServlet",
 			data: {requestType :"updateSalePointRank", idOfSalePoint: idOfSP, newRank: currentRating},
 			success: function(newAvg) {
 				$("#rankInput").prop('value', newAvg);
@@ -211,15 +204,14 @@ function addComment(){
 		var size = text.split(" ");
 		if (size.length <= 8){
 			$.ajax({
-				// url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-				url: "45.56.108.79:8080/APPserver/clientServlet",
-			data: {requestType :"addSalePointComment", idOfSalePoint: idOfSP, comment: text},
-			success: function() {
-				var insert = document.getElementById('commentContainer');
-				createUsersComment(insert, text);			
-			},
-			error: function(lo){ console.log("error" + lo.message);}
-			});
+				url: "http://45.56.108.79:8080/APPserver/clientServlet",
+				data: {requestType :"addSalePointComment", idOfSalePoint: idOfSP, comment: text},
+				success: function() {
+					var insert = document.getElementById('commentContainer');
+					createUsersComment(insert, text);			
+				},
+				error: function(lo){ console.log("error" + lo.message);}
+				});
 		}
 		else
 			alert("אורך תגובה אינו חוקי.");
