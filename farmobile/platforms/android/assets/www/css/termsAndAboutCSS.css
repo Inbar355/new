@@ -5,6 +5,7 @@
     padding-right: 13%;
     padding-left: 13%;
 	font-family: 'Felix007', serif;
+    white-space: pre-line;
 }
 
 #topHeadline{
@@ -20,4 +21,10 @@
 
 #topHeadline{
 	    padding-right: 15%;
+}
+
+.likebtn{
+    background-color: #7b7bea;
+    color: white;
+    font-weight: 800;
 }

@@ -4,8 +4,6 @@
     <meta http-equiv="Content-Security-Policy" content="default-src * gap: ws: https://ssl.gstatic.com;script-src 'self' 'unsafe-inline' 'unsafe-eval' * data: blob:;style-src 'self' 'unsafe-inline' * data: blob:;img-src * data: 'unsafe-inline' 'self' content:;">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="initial-scale=1, width = device-width">
-    <link rel="stylesheet" href="css/sideAndUpperMenuCSS.css">
-    <link rel="stylesheet" href="css/signupAndSigninCSS.css">
 	<link href='http://serve.fontsproject.com/css?family=Felix007:400'rel='stylesheet' type='text/css'>
     <script src="js/jquery-2.0.3.min.js"></script>
     <script src="js/sideAndUpperMenuScript.js"></script>
@@ -14,14 +12,16 @@
     <script src="cordova.js"></script>
     <script src="phonegap.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/sideAndUpperMenuCSS.css">
+    <link rel="stylesheet" href="css/signupAndSigninCSS.css">
 </head>
 <body>
 
-<div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
+<div id="mySidenav" class="sidenav ">
+    <a href="javascript:void(0)" class="closebtn unFocused" onclick="closeNav()"></a>
     <table>
         <tr>
-            <td><img id="welcomeImg" src="img/face.jpg">
+            <td><div class="col-xs-4 unFocused"></div> <img class="unFocused" id="welcomeImg" src="img/face.jpg">
                 <a id="userName"></a></td>
         </tr>
         <tr>
@@ -56,38 +56,36 @@
         <div class="login-form">
             <div class="sign-in-htm">
                 <div class="group">
-                    <label for="loginUserName" class="label">: שם משתמש</label>
-                    <input id="loginUserName" type="text" class="input text_align">
+                    <label for="loginUserName" class="label" style=" margin-right: 19%;color: black;">: שם משתמש</label>
+                    <input id="loginUserName" type="text" class="input text_align unFocused">
                 </div>
                 <div class="group">
-                    <label for="loginPassword" class="label">: סיסמה</label>
-                    <input id="loginPassword" type="password" class="input text_align" data-type="password">
+                    <label for="loginPassword" class="label" style="color: black;">: סיסמה</label>
+                    <input id="loginPassword" type="password" class="input text_align unFocused" data-type="password">
                 </div>
                 <div class="group">
-                    <input id="check" type="checkbox" class="check" checked>
+                    <input id="check" type="checkbox" class="check unFocused" checked>
                     <label for="check"><span class="icon"></span> השאר אותי מחובר</label>
                 </div>
                 <div class="group">
-                    <input type="submit" class="button" value="Sign  In" onclick="Login()">
+                    <input type="submit" class="button unFocused" value="Sign  In" style="color: whitesmoke;" onclick="Login()">
                 </div>
+				<br><br><br><br>
+				<img id="FBpic" src="img/connectVIAFB.png" style="border-radius:8px;" onclick="loginToFB()">
                 <div class="col-xs-4"></div>
-                <!--<div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with"
-                     data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="true"
-                     onlogin="checkLoginState()"></div>-->
                 <label id="dataMissMatch" class="data-alert"></label>
-                <button type="fb_login" id = "addPoint" class="btn btn-danger btn-block" onclick="loginToFB()" >אישור</button>
             </div>
             <div class="sign-up-htm">
                 <div class="group">
-                    <label for="signUserName" class="label">: שם משתמש*</label>
+                    <label for="signUserName" class="label" style=" margin-right: 22%;">: שם משתמש*</label>
                     <input id="signUserName" type="text" class="input text_align" placeholder="(עברית)">
                 </div>
                 <div class="group">
-                    <label for="signPassword" class="label">: סיסמה*</label>
+                    <label for="signPassword" class="label" style=" margin-right: -7%;">: סיסמה*</label>
                     <input id="signPassword" type="password" class="input text_align" data-type="password">
                 </div>
                 <div class="group">
-                    <label for="signPassword2" class="label">: סיסמה בשנית*</label>
+                    <label for="signPassword2" class="label" style=" margin-right: 22%;">: סיסמה בשנית*</label>
                     <input id="signPassword2" type="password" class="input text_align" data-type="password">
                 </div>
                 <div class="group">
@@ -95,20 +93,20 @@
                     <input id="signFullName" type="text" class="input text_align">
                 </div>
                 <div class="group">
-                    <label for="signBDay" class="label">: תאריך לידה</label>
+                    <label for="signBDay" class="label" style=" margin-right: 15%;">: תאריך לידה</label>
                     <input id="signBDay" type="text" class="input text_align">
                 </div>
                 <div class="group">
-                    <label for="signAddress" class="label">: כתובת</label>
+                    <label for="signAddress" class="label" style=" margin-right: -5%;">: כתובת</label>
                     <input id="signAddress" type="text" class="input text_align">
                 </div>
 				<button class="btn btn-block invisibleRow" disabled></button>
                 <div class="group">
-                    <input type="submit" class="button" value="Sign Up" onclick="signUp()">
+                    <input type="submit" class="button" value="Sign Up" style="color: whitesmoke" onclick="signUp()">
                 </div>
 				<button class="btn btn-block invisibleRow" disabled></button>
                 <div class="foot-lnk">
-                    <label for="tab-1"> כבר חבר במועדון הלקוחות שלנו? </label>
+                    <label for="tab-1">?כבר חבר במועדון הלקוחות שלנו</label>
                 </div>
                 <label id="dataMissing" class="data-alert"></label>
             </div>

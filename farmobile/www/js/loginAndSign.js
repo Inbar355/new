@@ -21,8 +21,8 @@ $(function(){
     if(sessionStorage.getItem('userLogin')) {
         document.getElementById("userName").innerHTML = " שלום " + sessionStorage.getItem('userLogin');
         $.ajax({
-            url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-            timeout: 3000,
+            // url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+            url: "45.56.108.79:8080/APPserver/clientServlet",
             data: {requestType :"isUserLogIn", userName: sessionStorage.getItem('userLogin')},
             success: function(array) {
                 if(array[0] != 0)//user already log Into the system
@@ -37,17 +37,24 @@ $(function(){
 });
 
 function Login() {
-    document.getElementById('dataMissMatch').innerText = "";
     var userName = document.getElementById('loginUserName').value;
     var userPassword = document.getElementById('loginPassword').value;
-    ajaxForLogin(userName, userPassword);
+    document.getElementById('dataMissMatch').innerText = "";
+
+    if (userName !="" && userPassword !=""){
+        ajaxForLogin(userName, userPassword);
+    }
+   else{
+        alert("חסרים פרטים לכניסה");
+        document.getElementById('dataMissMatch').innerText = ".נא למלא את כל הפרטים *"
+    }
 }
 
 function loginToFB() {
     try {
         facebookConnectPlugin.login(["public_profile"], function (response) {
             facebookConnectPlugin.api('/me?fields=age_range,name,picture{url},id',["public_profile"], function (data) {
-           /*     cahngeProfilePic(data.picture.data.url);*/
+                /*cahngeProfilePic(data.picture.data.url);*///to the next relise - change profile pic to FB profile pic
                 ajaxForLogin(data.id, null, data.name, data.age_range.min);
             });
         }, function (er) {
@@ -62,8 +69,8 @@ function loginToFB() {
 function ajaxForLogin(userName, userPassword, FBname, FBBDay){
     var check = document.getElementById('check').checked;
     $.ajax({
-        url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-        timeout: 3000,
+        // url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+        url: "45.56.108.79:8080/APPserver/clientServlet",
         data: {requestType :"userLogin", userName: userName, userPass: userPassword},
         success: function(array) {
             if(array[0] == -1) {//user name + password doesn't found
@@ -77,8 +84,11 @@ function ajaxForLogin(userName, userPassword, FBname, FBBDay){
             else{
                 if(array[1] == 1) {//the user exists
                     if(check) 
-						FBname == null ? sessionStorage.setItem('userLogin', userName) : sessionStorage.setItem('userLogin', FBname);
-                    window.location.href = "mainPage.html";
+						FBname == null ? sessionStorage.setItem('userLogin', userName) : sessionStorage.setItem('userLogin', FBname + "@" + userName);
+                    alert("התחברת בהצלחה !");
+                    setTimeout(function () {
+                        window.location.href = "mainPage.html"; //
+                    }, 1000);
                 }
                 else
                     document.getElementById('dataMissMatch').innerText = ".ישנה אי התאמה בין שם המשתמש לסיסמה *"
@@ -105,20 +115,25 @@ function signUp() {
         document.getElementById('dataMissing').innerText = ".נדרשת סיסמה עד 8 תווים *";
 	else if (fullName == "admin")
         document.getElementById('dataMissing').innerText = "אסור להשתמש בשם שנבחר, נא לבחור שם אחר";
+    else if (userName.index("@") > 0)
+        document.getElementById('dataMissing').innerText = "אסור להשתמש בתווים שאינם אותיות, נא לבחור שם אחר";
     else
         ajaxForSignUp(userName, userPassword1,fullName,date,address);
 }
 
 function ajaxForSignUp(userName, userPassword1,fullName ,date, address) {
     $.ajax({
-        url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-        timeout: 3000,
+        // url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+        url: "45.56.108.79:8080/APPserver/clientServlet",
         data: {requestType :"userSign", userName: userName, userPass: userPassword1,
             name: fullName, date: date, add: address},
         success: function(array) {
-            if(array[0] == 0)//user name already exists
+            if(array[0] == 0) {//user name already exists
                 document.getElementById('dataMissing').innerText = ".שם משתמש זה תפוס, אנא בחר חדש *";
-				
+            }
+            else if (array[0] == 9){
+                document.getElementById('dataMissing').innerText = ".הוכנסו פרטים שגויים *";
+            }
             else{
                 sessionStorage.setItem('userLogin', userName);
 				window.location.href = "mainPage.html";

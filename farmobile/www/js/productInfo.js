@@ -1,13 +1,13 @@
 $(function(){
     $.ajax({
-        url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-        timeout: 3000,
+        // url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+        url: "45.56.108.79:8080/APPserver/clientServlet",
         data: {requestType :"getProductInfo"},
         success: function(information) {
             for(var i=0; i<information.length; i++) {
                 var id = information[i].split("-");
                 var container = document.createElement('div');
-                container.className = "contain col-xs-5";
+                container.className = "contain col-xs-5 moveAble grayScaled";
                 var img = document.createElement('img');
                 img.id = id[1];
                 var str = "img/" +  img.id + ".jpg";

@@ -1,11 +1,15 @@
 var address = null;
 var ln;
+var currentRating;
 
 $(function(){
+	setTimeout(function () {
+		$(".background").empty().append('<img src="img/back.jpg" width="100%" style="height: -webkit-fill-available;"/>');
+	}, 600);
     var idOfSP = getUrlVars()["id"];
     $.ajax({
-        url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-        timeout: 3000,
+		// url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+		url: "45.56.108.79:8080/APPserver/clientServlet",
         data: {requestType :"getSalePointData", idOfSalePoint: idOfSP},
         success: function(information) {
 			console.log(information);
@@ -35,7 +39,7 @@ $(function(){
 			address = information[0];
             document.getElementById('addressInput').innerText =information[0];
 			information[8] == 0 ? document.getElementById('rankInput').innerText = 0 
-			: document.getElementById('rankInput').innerText = information[7]/information[8];
+			: document.getElementById('rankInput').innerText = Math.round(information[7]/information[8]);
 			
             if (information[4] == null){
                 document.getElementById('pointComment').style.display = "none";
@@ -105,6 +109,7 @@ $(function(){
     document.body.appendChild(centerControlDiv);
 	
     setText();
+	$(".stars").height($("#send").height()).width($("#send").width()/4);
 });
 
 function createUsersComment(insertInto, text){
@@ -133,8 +138,8 @@ function setPushMsg(){
     //change the owner to the uniqe id
     var idOfSP = getUrlVars()["id"];
     $.ajax({
-        url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-        timeout: 3000,
+		// url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+		url: "45.56.108.79:8080/APPserver/clientServlet",
         data: {requestType :"getNotificationToSalePoint", idOfPage: idOfSP, owner: "1A2S3D4F5F"},
         error: function (error) {
             console.error("Failed to get ajax response : " + error);
@@ -177,40 +182,37 @@ function navigate(){
 	}
 }
 
+function shareIt() {
+	alert("share...");
+}
+
 function sendRank(){
 	var idOfSP = getUrlVars()["id"];
-	var rank = 0;
-	if (document.getElementById("group1").checked)
-		rank = 5;
-	else if (document.getElementById("group2").checked)
-		rank = 4;
-	else if (document.getElementById("group3").checked)
-		rank = 3;
-	else if (document.getElementById("group4").checked)
-		rank = 2;
-	else if (document.getElementById("group5").checked)
-		rank = 1;
-	$.ajax({
-        url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-		timeout: 3000,
-        data: {requestType :"updateSalePointRank", idOfSalePoint: idOfSP, newRank: rank},
-        success: function(newAvg) {
-			document.getElementById('rankInput').innerText = newAvg;
-			alert("! תודה שדירגת");
-        },
-        error: function(lo){ console.log("error" + lo.message);}
-    });
+	if (currentRating != null){
+		$.ajax({
+			// url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+			url: "45.56.108.79:8080/APPserver/clientServlet",
+			data: {requestType :"updateSalePointRank", idOfSalePoint: idOfSP, newRank: currentRating},
+			success: function(newAvg) {
+				$("#rankInput").prop('value', newAvg);
+				alert("תודה שדירגת!");
+				$("#send").attr("disabled", true);
+			},
+			error: function(lo){ console.log("error" + lo.message);}
+		});
+	}
 }
 
 function addComment(){
+
 	var idOfSP = getUrlVars()["id"];
 	var text = prompt("אנא הכנס תגובה - עד 8 מילים");
 	if(text != "" & text != null){
 		var size = text.split(" ");
 		if (size.length <= 8){
 			$.ajax({
-			url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-			timeout: 3000,
+				// url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+				url: "45.56.108.79:8080/APPserver/clientServlet",
 			data: {requestType :"addSalePointComment", idOfSalePoint: idOfSP, comment: text},
 			success: function() {
 				var insert = document.getElementById('commentContainer');
@@ -220,8 +222,19 @@ function addComment(){
 			});
 		}
 		else
-			alert("אורך תגובה אינו חוקי.");	
+			alert("אורך תגובה אינו חוקי.");
 	}
+	setTimeout(function () {
+		$(".background").empty().append('<img src="img/back.jpg" width="100%" style="height: -webkit-fill-available;"/>');
+	}, 200);
+
 }
 
 $(document).on("deviceready", init);
+
+function getRank(item) {
+	$(item).prevAll().andSelf().css("filter", "none");
+	$(item).nextUntil().css("filter", "grayscale()");
+	currentRating = item.id.substring(0, 1);
+	$("#send").prop('disabled', false);
+}

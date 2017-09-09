@@ -3,8 +3,8 @@ var sec = 1;
 $(function(){
     var id = getUrlVars()["id"];
     $.ajax({
-        url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-        timeout: 3000,
+        // url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+        url: "45.56.108.79:8080/APPserver/clientServlet",
         data: {requestType :"getPersonalInfo", farmersID: id},
         success: function(information) {
             console.log(information);
@@ -15,7 +15,8 @@ $(function(){
             document.getElementById('farmerInfo').innerText = information[3];
             document.getElementById('farmInfo').innerText = information[4];
             var img = document.getElementById('myImage');
-            img.src = "img/farmer@" + id + ".png";
+            img.src = "img/farmer" + id + ".jpg";
+            img.onerror = "img/farmer.png";
         },
         error: function(lo){   console.log("error" + lo.message);}
     });

@@ -25,29 +25,43 @@ function addUpperMenu() {
 }
 
 function setZones(zones){
-    var splited = zones.split(',');
-    for (var i = 0; i < splited.length; i++) {
-        document.getElementById(splited[i]).setAttribute('checked', true);
+    if (zones != "undefined"){
+        var splited = zones.split(',');
+        for (var i = 0; i < splited.length; i++) {
+            document.getElementById(splited[i]).setAttribute('checked', true);
+        }
     }
 }
 
 function checkVariables(callback) {
     var vars = {};
-	document.getElementById('personalName').innerText =  " שלום " + sessionStorage.getItem('userLogin');
-	
-    if (window.location.href.indexOf('fullName') > 0){
-       window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/g, function(m,key,value) {
-            vars[key] = decodeURIComponent(value);
-        });
-        if (window.location.href.indexOf('address') > 0){
-            $("#newAdd").val(vars['address']);
+    var userNameToDisplay;
+    try {
+        if (sessionStorage.getItem('userLogin').indexOf("@") > 0) {
+            userNameToDisplay = sessionStorage.getItem('userLogin').split("@")[0];
         }
-        if (window.location.href.indexOf('birthday') > 0){
-            $("#newBday").val(vars['birthday']);
+        else {
+            userNameToDisplay = sessionStorage.getItem('userLogin');
         }
-        if (vars['zones'] != "NULL"){
-            setZones(vars['zones']);
+        document.getElementById('personalName').innerText = " שלום " + userNameToDisplay;
+
+        if (window.location.href.indexOf('fullName') > 0) {
+            window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/g, function (m, key, value) {
+                vars[key] = decodeURIComponent(value);
+            });
+            if (window.location.href.indexOf('address') > 0 && vars['address'].indexof("undefined") == 0) {
+                $("#newAdd").val(vars['address']);
+            }
+            if (window.location.href.indexOf('birthday') > 0 && vars['birthday'].indexof("undefined") == 0) {
+                $("#newBday").val(vars['birthday']);
+            }
+            if (vars['zones'] != "NULL" && vars['zones'].indexof("undefined") != 0) {
+                setZones(vars['zones']);
+            }
         }
+    }
+    catch (exp){
+        console.log(exp);
     }
 	callback();
 }
@@ -64,13 +78,16 @@ function updateInfo(){
     }
     else {
         $.ajax({
-            url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-            timeout: 3000,
+            // url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+            url: "45.56.108.79:8080/APPserver/clientServlet",
             data: {
                 requestType: "updateInfo", id: id,
                 Add: newAdd, Pass: newPass, Bday: newBDay, Zones: zones.toString()},
             success: function (info) {
                 document.getElementById('alertInfoLabel').innerText = "הפרטים עודכנו כנדרש";
+                setTimeout(function () {
+                    window.location.href = "mainPage.html"; //
+                }, 1000);
             },
             error: function (lo) {
                 console.log("error" + lo.message);

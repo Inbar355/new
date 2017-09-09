@@ -1,6 +1,8 @@
 $(function(){
+    var addContainer = true;
     $.ajax({
-        url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+       // url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+        url: "45.56.108.79:8080/APPserver/clientServlet",
         timeout: 3000,
         data: {requestType :"getFarmersInfo"},
         success: function(information) {
@@ -9,17 +11,34 @@ $(function(){
                 var container = document.createElement('div');
                 container.className = "contain col-xs-5";
                 var img = document.createElement('img');
-                img.src = "img/farmer.png";
+                img.src = "img/farmer" + id[1] + ".jpg";
+                img.onerror = function () {
+                    $(this).attr('src', 'img/DefFarmer.jpg');
+                    img.src = "img/DefFarmer.jpg";
+                };
                 img.id = id[1];
                 img.className = "imgClass";
                 img.onclick = function() { window.location.href = "personalFarmerInfo.html"+ "?id=" + this.id; };
                 var text = document.createElement('span');
                 text.innerText = id[0];
-                text.className = "label label-info";
+                text.className = "label";
                 text.id = "text";
                 container.appendChild(img);
                 container.appendChild(text);
-                document.body.appendChild(container);
+                if (addContainer){
+                    var newContainer = document.createElement('div');
+                    newContainer.className = "container";
+                    newContainer.style = "padding-right: 0;padding-left: 0;"
+                    $("#farmersImgs").append(newContainer);
+                    $(newContainer).append(container);
+                    addContainer = false;
+                }else{
+                    var spacer = document.createElement('div');
+                    spacer.className = "col-xs-1";
+                    $(newContainer).append(spacer);
+                    $(newContainer).append(container);
+                    addContainer = true;
+                }
                 if (i%1 ==0 || i%2 ==0){
                     container.className += " ani1 animated bounceInUp";
                 }if (i%3 ==0 || i%4 ==0){

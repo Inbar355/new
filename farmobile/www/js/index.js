@@ -1,5 +1,5 @@
 var app = {
-    // Application Constructor
+  /*  // Application Constructor
     initialize: function () {
         this.bindEvents();
     },
@@ -46,13 +46,15 @@ var app = {
                 'Ok'                  // buttonName
             );
         });
-    }
+    }*/
 };
 
+/*
 
 function AjaxInserUserUUIDToDB (AT){
     $.ajax({
-        url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+ // url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+ url: "45.56.108.79:8080/APPserver/clientServlet",
         timeout: 3000,
         data: {requestType :"asignUUID-AT", uuid: device.uuid, accessToken: AT, platform: device.platform},
         success: function(ret) {
@@ -62,4 +64,4 @@ function AjaxInserUserUUIDToDB (AT){
             console.log("Error - " + lo);
         }
     });
-}
+}*/

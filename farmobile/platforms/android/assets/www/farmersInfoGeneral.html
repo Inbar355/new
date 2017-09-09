@@ -4,9 +4,9 @@
     <meta http-equiv="Content-Security-Policy" content="default-src * gap: ws: https://ssl.gstatic.com;script-src 'self' 'unsafe-inline' 'unsafe-eval' * data: blob:;style-src 'self' 'unsafe-inline' * data: blob:;img-src * data: 'unsafe-inline' 'self' content:;">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="initial-scale=1, width = device-width">
-    <link rel="stylesheet" href="css/farmersInfoCSS.css">
+    <link href='http://serve.fontsproject.com/css?family=Felix007:400'rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/sideAndUpperMenuCSS.css">
-	<link href='http://serve.fontsproject.com/css?family=Felix007:400'rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/farmersInfoCSS.css">
     <script src="js/jquery-2.0.3.min.js"></script>
     <script src="js/sideAndUpperMenuScript.js"></script>
     <script src="js/farmersInfo.js"></script>
@@ -20,8 +20,8 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
     <table>
         <tr>
-            <td><img id="welcomeImg" src = "img/face.jpg">
-                <a id="userName"></a></td>
+            <td><div class="col-xs-4"></div> <img id="welcomeImg" src = "img/face.jpg" onclick="myDetails()">
+                <a id="userName" onclick="myDetails()"></a></td>
         </tr>
         <tr>
             <td><a href="mainPage.html">פירוט נקודות מכירה  <img src="img/fruit_car.jpg"></a></td>
@@ -46,23 +46,30 @@
         </tr>
     </table>
 </div>
+<div class="background"><img src="img/back.jpg" width="100%" style="height: -webkit-fill-available;"/></div>
 <br><br><br><br>
-<div align="right">
-    <div class="col-xs-2"></div>
-    <div class="col-xs-10">
-        <h3><span class="font label label-info">: אודות החקלאים המשתתפים במחאה</span></h3>
-    </div>
-	<br><br>
-    <div class="col-xs-3"></div>
-    <div class="col-xs-10">
-        <button class="icon" id="submit" onclick="searchFarmer()"></button>
-        <input type="search" id="search" placeholder="חיפוש חקלאי" />
+<div class="container animated ani1 grayScaled">
+    <div class="imgHolder">
+        <img id="fruitsPic" src="img/farmers.png" style="height: 117px;">
+        <span id="prodName"></span>
     </div>
 </div>
+
+<div class="container">
+    <button class="icon" id="submit" onclick="searchFarmer()"></button>
+    <input type="search" id="search" placeholder="חיפוש חקלאי" onkeyup="if (event.keyCode == 13) {searchFarmer();}"/>
+</div>
+
+
 <br><br>
-<div align="right">
-	<label id="dataMissing"></label>
+<div class="container" id="dataMissing" style="display: none">
+    <div class="col-xs-5"></div>
+    <button type="button" class="btn btn-danger btn-block" onclick="recoverPics()">לא נמצאו תוצאות, נקה</button>
 </div>
 <br>
+
+<div class="container" id="farmersImgs" style="text-align: end;"></div>
+
+
 </body>
 </html>

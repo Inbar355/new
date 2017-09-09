@@ -42,10 +42,6 @@ function initTermsAndInfo() {
              $(' <h3 id="topHeadline">תנאי שימוש</h3><br><br><br>').appendTo('#textZone');
          }
 			$('<p>'+value[1]+'</p>').appendTo('#textZone');
-         if (page == "protestInfo.html"){
-             $('<p>'+'<iframe width="100%" height="100%" src="http://www.youtube.com/embed/ziHQ1wWuiQ0?wmode=opaque;rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>'
-                 +'</p>').appendTo('#videoZone');
-         }
         }
     })
 }
@@ -53,8 +49,8 @@ function initTermsAndInfo() {
 
 function ajaxForProtestInfo (reqFor, callback){
 	 $.ajax({
-        url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-         timeout: 3000,
+         // url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+         url: "45.56.108.79:8080/APPserver/clientServlet",
         data: {requestType :"getAboutTheProtest", requsetFor: reqFor},
 		      error: function (error) {
             console.error("Failed to get ajax response : " + error);

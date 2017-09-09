@@ -20,19 +20,26 @@ function onSuccess(position) {
 }
 
 function onError(error) {
-    alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
 	var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 12,
         center: {lat: 32.01 , lng: 34.789022},
         mapTypeControl: false
     });
-	initPage(map);	
+	initPage(map);
 }
+
+function initMap() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(onSuccess, onError,{timeout:250});
+    } else {
+        onError();
+    }
+ }
 
 function initPage(map){
 	$.ajax({
-        url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-        timeout: 3000,
+        // url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+        url: "45.56.108.79:8080/APPserver/clientServlet",
         data: {requestType :"mainMarkers"},
         success: function(location) {
             for(var i=0; i<location.length; i++) {
@@ -61,7 +68,7 @@ function initPage(map){
         error: function(lo){   console.log("error" + lo.message);}
     });
     var geocoder = new google.maps.Geocoder();
-    $('#address').keyup(function() {if (event.keyCode == 13) {geocodeAddress(map, geocoder);}});
+    $('#address').keyup(function() {if (event.keyCode == 13) {geocodeAddress(map, geocoder); }});
     var centerControlDiv = document.createElement('button');
     centerControlDiv.className="btn-block";
     centerControlDiv.id="upperButton";
@@ -81,19 +88,7 @@ function initPage(map){
 
     centerControlDiv.index = 1;
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(centerControlDiv);
-
     setText();
-}
-
-function initMap() {
-	//navigator.geolocation.getCurrentPosition(onSuccess, onError);
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
-        center: {lat: 32.01 , lng: 34.789022},
-        mapTypeControl: false
-    });
-    initPage(map);
-
 }
 
 function toggleBounce(marker) {
@@ -120,7 +115,7 @@ function changeButtons() {
             '<button type="button" id="send" class="btn btn-info askButtons" onclick="sendAddress()">שלח</button>' +
             '</div>'
         );
-    $('#phone').keyup(function() {if (((event.keyCode < 48 || event.keyCode > 57) && event.keyCode != 8)) {alert("נא להכניס מספרים בלבד"); deleteLastChar() } });
+
     document.getElementById('map').style.height = '80%';
 }
 
@@ -150,8 +145,8 @@ function sendAddress() {
 
     if (checkValues(data, phoneNumber, name) ){
         $.ajax({
-            url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
-            timeout: 3000,
+            // url: "http://Vmedu122.mtacloud.co.il:8080/APPserver/clientServlet",
+            url: "45.56.108.79:8080/APPserver/clientServlet",
             data: {requestType :"sendNewAddress", newAddress: data, name: name,phone: phoneNumber },
             success: function() {
                 alert ("הבקשה נשלחה בהצלחה.ניתן לשלוח בקשה אחת בלבד בכל הפעלה של האפקליציה.");
@@ -174,8 +169,8 @@ function checkValues(data, phone, name) {
         alert("השם חייב להיות לכל היותר באורך 20 תווים");
         return false;
     }
-    else if (phone.length > 17) {
-        alert("נא להכניס מספרים בלבד");
+    else if (phone.length != 10) {
+        alert("נא להכניס מספר בן 10 ספרות בדיוק");
         return false;
     }
     else if (data.length  < 2){
