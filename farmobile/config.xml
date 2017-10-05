@@ -54,10 +54,6 @@
     <access origin="*.google.com" />
     <access origin="*.googleapis.com" />
     <plugin name="cordova-plugin-battery-status" spec="~1.1.1" />
-	<plugin name="cordova-plugin-camera">
-		<param name="CAMERA_USAGE_DESCRIPTION" value="We are using the Camera for something..." />
-		<param name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="We are using the Photo Library for something..." />
-	</plugin>
     <plugin name="cordova-plugin-console" spec="~1.0.3" />
     <plugin name="cordova-plugin-contacts" spec="~2.0.1" />
     <plugin name="cordova-plugin-device" spec="~1.1.1" />
