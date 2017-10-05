@@ -1,0 +1,118 @@
+html {
+    background: url(../img/back.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.invisibleRow{
+    border: none;
+    background-color: transparent;
+}
+
+#text{
+    font-size: large;
+    border-radius: 50%;
+	font-family: 'Felix007', serif;
+    background: #999;
+}
+
+.contain{
+	padding-top: 5%;
+}
+
+.moveAble{
+    left: 10%;
+}
+
+#submit{
+    display: inline-block;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    background-color: white;
+    border: 2px solid;
+    border-radius: 23px;
+    background-image: url("../img/search.png");
+	background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    border-color: transparent;
+    float: inherit;
+}
+
+#search{
+    outline: 0;
+    border: 0;
+    border-bottom: 1px solid black;
+    background: transparent;
+    width: 83%;
+    height: 50px;
+    font-size: 16px;
+    float: left;
+    -moz-border-radius: 5px;
+    text-align: right;
+    font-family: 'Felix007', serif;
+}
+
+#dataMissing{
+	width: 100%;
+    font-size: 23px;
+    font-family: 'Felix007', serif;
+    color: red;
+}
+
+.font{
+	font-family: 'Felix007', serif;
+}
+
+.imgClass{
+	border-color: black;
+	border: 3px solid black;
+	border-radius: 100%;
+	background: aliceblue;
+}
+
+
+.animated.bounceInUp {
+    -webkit-animation-name: bounceInUp;
+    -moz-animation-name: bounceInUp;
+    -o-animation-name: bounceInUp;
+    animation-name: bounceInUp;
+}
+
+.animated {
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@keyframes bounceInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(2000px);
+    }
+
+60% {
+    opacity: 1;
+    transform: translateY(-30px);
+}
+
+80% {
+    transform: translateY(10px);
+}
+100% {
+    transform: translateY(0);
+}
+}
+
+.ani1 { animation-delay:0.1s; -moz-animation-delay:0.1s; -webkit-animation-delay:0.1s; }
+.ani2 { animation-delay:0.2s; -moz-animation-delay:0.2s; -webkit-animation-delay:0.2s; }
+.ani3 { animation-delay:0.3s; -moz-animation-delay:0.3s; -webkit-animation-delay:0.3s; }
+.ani4 { animation-delay:0.4s; -moz-animation-delay:0.4s; -webkit-animation-delay:0.4s; }
+

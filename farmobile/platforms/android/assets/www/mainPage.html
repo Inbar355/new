@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src 'self' 'unsafe-inline' *; img-src * data: 'unsafe-inline'">
+<meta name="viewport" content="width=device-width, height= device-height, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link href='http://serve.fontsproject.com/css?family=Felix007:400' rel='stylesheet' type='text/css'>
+    <script src="js/mainScript.js"></script>
+    <script src="js/sideAndUpperMenuScript.js"></script>
+    <script src="js/jquery-2.0.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mainCSS.css">
+    <link rel="stylesheet" href="css/sideAndUpperMenuCSS.css">
+</head>
+<body dir="rtl">
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
+    <table>
+        <tr>
+            <td><div class="col-xs-4 unFocused"></div> <img class="unFocused" id="welcomeImg" src="img/face.jpg">
+                <a id="userName"></a></td>
+        </tr>
+        <tr>
+            <td><a href="mainPage.html"><img src="img/car.gif"> נקודות מכירה</a></td>
+        </tr>
+        <tr>
+            <td><a href="protestInfo.html"><img src="img/protest_sign.jpg">  על המחאה</a></td>
+        </tr>
+        <tr>
+            <td><a href="farmersInfoGeneral.html"><img src="img/farmer.jpg">  אודות החקלאים</a></td>
+        </tr>
+        <tr>
+            <td><a href="produceInfoGeneral.html"><img src="img/fruits.jpg">  אודות התוצרת</a></td>
+        </tr>
+        <tr>
+            <td><a href="loginAndSign.html"><img src="img/login.png">  התחבר/הרשם למועדון לקוחות</a></td>
+        </tr>
+        <tr>
+            <td><a href="joinUs.html?Prov=false"><img src="img/makeorder.jpg">  הזמן נקודת מכירה</a></td>
+        </tr>
+        <tr>
+            <td><a href="joinUs.html?Prov=true"><img src="img/joinUs.jpg">  הצטרף כספק</a></td>
+        </tr>
+        <tr>
+            <td><a href="TermsOfUse.html"><img src="img/terms.jpg">  תנאי שימוש</a></td>
+        </tr>
+    </table>
+</div>
+<div id="floating-panel">
+	<div class="col-xs-2"></div>
+	<input type="text" align="right" id="address" placeholder="חיפוש כתובת" />
+	<span id="search_button"></span>
+</div>
+<div id="map"></div>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADlk_CtGRjQOGs3fk8NjG9yVQwj4xPxnI&callback=initMap">
+</script>
+</body>
+</html>
+
+
