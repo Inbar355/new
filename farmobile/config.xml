@@ -26,16 +26,7 @@
     <feature name="Geolocation">
         <param name="android-package" value="org.apache.cordova.geolocation.GeoBroker" />
     </feature>
-    <access origin="*" />
-    <allow-navigation href="http://*/*" />
-    <allow-navigation href="https://*/*" />
-    <allow-intent href="http://*/*" />
-    <allow-intent href="https://*/*" />
-    <allow-intent href="tel:*" />
-    <allow-intent href="sms:*" />
-    <allow-intent href="mailto:*" />
-    <allow-intent href="geo:*" />
-    <allow-intent href="fb:*" />
+
     <platform name="android">
         <allow-intent href="market:*" />
         <resource-file src="google-services.json" target="google-services.json" />
@@ -59,7 +50,6 @@
 		<config-file platform="ios" parent="NSPhotoLibraryUsageDescription" target="*-Info.plist">
 			<string>For uploading images</string>
 		</config-file>
-        <resource-file src="GoogleService-Info.plist" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
@@ -94,12 +84,19 @@
     <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator">
 		<variable name="GEOLOCATION_USAGE_DESCRIPTION" value="Navigation" />
 	</plugin>
-	<plugin name="cordova-plugin-camera">
-		<param name="CAMERA_USAGE_DESCRIPTION" value="We are using the Camera for something..." />
-		<param name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="We are using the Photo Library for something..." />
-	</plugin>
     <plugin name="cordova-plugin-file-transfer" spec="~1.5.0" />
 	<config-file platform="ios" parent="NSPhotoLibraryUsageDescription" target="*-Info.plist">
 		<string>For uploading images</string>
 	</config-file>
+	
+	<access origin="*" />
+    <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-intent href="fb:*" />
 </widget>
