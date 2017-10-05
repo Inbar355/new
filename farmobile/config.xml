@@ -20,6 +20,7 @@
     <preference name="StatusBarStyle" value="blacktranslucent" />
     <preference name="android-build-tool" value="gradle" />
     <feature name="Geolocation">
+		<param name="GEOLOCATION_USAGE_DESCRIPTION" value="We are using the location service for maps." />
         <param name="ios-package" value="CDVLocation" />
     </feature>
     <feature name="Geolocation">
