@@ -12,46 +12,68 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/mainCSS.css">
     <link rel="stylesheet" href="css/sideAndUpperMenuCSS.css">
+       <script type="text/javascript" src="js/SocialSharing.js"></script>
+      <script src="phonegap.js"></script>
+      <script type="text/javascript" src="cordova.js"></script>
 </head>
 <body dir="rtl">
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
     <table>
         <tr>
-            <td><div class="col-xs-4 unFocused"></div> <img class="unFocused" id="welcomeImg" src="img/face.jpg">
+            <td style="text-align: center;">
+               <img class="unFocused" id="welcomeImg" src="img/face.jpg">
                 <a id="userName"></a></td>
         </tr>
         <tr>
-            <td><a href="mainPage.html"><img src="img/car.gif"> נקודות מכירה</a></td>
+            <td><a href="mainPage.html"><img src="img/pointer.png"> נקודות מכירה</a></td>
         </tr>
         <tr>
             <td><a href="protestInfo.html"><img src="img/protest_sign.jpg">  על המחאה</a></td>
         </tr>
+<!--         <tr>
+            <td><a href="farmersInfoGeneral.html"><img src="img/ICON_FARMER.png">  אודות החקלאים</a></td>
+        </tr> -->
         <tr>
-            <td><a href="farmersInfoGeneral.html"><img src="img/farmer.jpg">  אודות החקלאים</a></td>
-        </tr>
-        <tr>
-            <td><a href="produceInfoGeneral.html"><img src="img/fruits.jpg">  אודות התוצרת</a></td>
+            <td><a href="produceInfoGeneral.html"><img src="img/ICON_HARVEST.png">  אודות התוצרת</a></td>
         </tr>
         <tr>
             <td><a href="loginAndSign.html"><img src="img/login.png">  התחבר/הרשם למועדון לקוחות</a></td>
         </tr>
         <tr>
-            <td><a href="joinUs.html?Prov=false"><img src="img/makeorder.jpg">  הזמן נקודת מכירה</a></td>
+            <td><a href="joinUs.html?Prov=false"><img src="img/ICON_SIGN.png">  הזמן נקודת מכירה</a></td>
         </tr>
         <tr>
-            <td><a href="joinUs.html?Prov=true"><img src="img/joinUs.jpg">  הצטרף כספק</a></td>
+            <td><a href="joinUs.html?Prov=true"><img src="img/ICON_JOIN.png">  הצטרף כספק</a></td>
         </tr>
         <tr>
-            <td><a href="TermsOfUse.html"><img src="img/terms.jpg">  תנאי שימוש</a></td>
+            <td><a href="TermsOfUse.html"><img src="img/info.png">  תנאי שימוש</a></td>
+        </tr>
+        <tr>
+            <td><a href="aboutUs.html"><img src="img/bulb-icon.png">  מפתחי האפליקציה</a></td>
         </tr>
     </table>
 </div>
 <div id="floating-panel">
 	<div class="col-xs-2"></div>
-	<input type="text" align="right" id="address" placeholder="חיפוש כתובת" />
+	<input type="text" id="address" placeholder="חיפוש כתובת" style="text-align: center" />
 	<span id="search_button"></span>
 </div>
+
+<div id="floating-panel-index">
+    <img src="img/pepper.png" class="pepperIMG" id="red" onclick="filterSalePointByState('red')">
+    <a class="pepperText" onclick="filterSalePointByState('red')">  מכירה פעילה   </a>
+	<img src="img/yellow_pepper.png" class="pepperIMG" id="yellow" onclick="filterSalePointByState('yellow')">
+    <a class="pepperText" onclick="filterSalePointByState('yellow')">  מכירה לא פעילה</a>
+    <img src="img/green_pepper.png" class="pepperIMG" id="geren" onclick="filterSalePointByState('green')">
+    <a class="pepperText" onclick="filterSalePointByState('green')">  שוק בהקמה   </a>
+</div>
+
+<div id="floating-panel-share">
+    <img src="img/whatsapp.png" style="width: 70px; height: 70px;" onclick="shareViaWhatsapp()">
+    <img id="FBBtn" style="width: 70px; height: 70px;" src="img/Facebook-icon.png" onclick="shareFacebook()">
+</div>
+
 <div id="map"></div>
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADlk_CtGRjQOGs3fk8NjG9yVQwj4xPxnI&callback=initMap">

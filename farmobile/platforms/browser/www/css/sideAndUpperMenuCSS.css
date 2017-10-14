@@ -15,8 +15,8 @@
     position: fixed;
     border: transparent;
     background: rgba(248, 248, 255, 0.5);
-    height: 9%;
-	top: 1%;
+    height: 67px;
+	top: 2%;
 }
 
 .sidenav {
@@ -66,10 +66,10 @@
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
 }
-
+/*
 .sidenav img{
 	filter: grayscale(90%);
-}
+}*/
 
 table, td {
     border: 1px solid;
@@ -123,9 +123,6 @@ table {
     outline:none;
 }
 
-
-
-
 .ui-widget-header,.ui-state-default, ui-button {
     background:#b9cd6d;
     border: 1px solid #b9cd6d;
@@ -137,4 +134,8 @@ textarea {
     display: inline-block;
     width: 100%;
     margin-bottom: 10px;
+}
+#mySidenav > table > tbody > tr > td > a > img{
+    width: 50px;
+    height: 50px;
 }

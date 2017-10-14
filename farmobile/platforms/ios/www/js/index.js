@@ -65,7 +65,8 @@ function AjaxInserUserUUIDToDB (AT){
         }
     });
 }*/
+/*
 
 $(function(){
     alert("שלום, האפליקציה עדין בהרצה ראשונית לכן יתכנו תקלות. במקרה של תקלה נשמח שתעדכנו אותנו במייל inbarbarproj@gmail.com, תודה")
-});
+});*/

@@ -25,7 +25,7 @@ function addUpperMenu() {
 }
 
 function setZones(zones){
-    if (zones != "undefined"){
+    if (zones != "null"){
         var splited = zones.split(',');
         for (var i = 0; i < splited.length; i++) {
             document.getElementById(splited[i]).setAttribute('checked', true);
@@ -49,13 +49,13 @@ function checkVariables(callback) {
             window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/g, function (m, key, value) {
                 vars[key] = decodeURIComponent(value);
             });
-            if (window.location.href.indexOf('address') > 0 && vars['address'].indexof("undefined") == 0) {
+            if (window.location.href.indexOf('address') > 0 && vars['address'].indexOf("undefined") != 0) {
                 $("#newAdd").val(vars['address']);
             }
-            if (window.location.href.indexOf('birthday') > 0 && vars['birthday'].indexof("undefined") == 0) {
+            if (window.location.href.indexOf('birthday') > 0 && vars['birthday'].indexOf("undefined") != 0) {
                 $("#newBday").val(vars['birthday']);
             }
-            if (vars['zones'] != "NULL" && vars['zones'].indexof("undefined") != 0) {
+            if (vars['zones'] != "NULL" && vars['zones'].indexOf("undefined") != 0) {
                 setZones(vars['zones']);
             }
         }

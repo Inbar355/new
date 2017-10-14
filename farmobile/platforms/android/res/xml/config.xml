@@ -1,5 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.phonegap.Farmobile" version="1.0.13" versionName="1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.phonegap.Farmobile" version="4.0.1" versionName="4.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <feature name="File">
+        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
+        <param name="onload" value="true" />
+    </feature>
+    <allow-navigation href="cdvfile:*" />
     <name>פארמוביל</name>
     <description>
         Farmobile app.
@@ -8,7 +13,17 @@
         Farmobile app
     </author>
     <icon src="icon.png" />
+    <icon gap:platform="ios" height="152" src="res/icon/ios/Icon-App-152x152@2x.png" width="152" />
+    <icon gap:platform="ios" height="76" src="res/icon/ios/Icon-App-76x76@2x.png" width="76" />
+    <icon gap:platform="ios" height="120" src="res/icon/ios/Icon-App-120x120@2x.png" width="120" />
     <content src="index.html" />
+    <access launch-external="yes" origin="geo:*" />
+    <access origin="*.google.com" />
+    <access origin="*.googleapis.com" />
+    <config-file parent="NSPhotoLibraryUsageDescription" platform="ios" target="*-Info.plist">
+        <string>For uploading images</string>
+    </config-file>
+    <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
     <access origin="*" />
     <allow-navigation href="http://*/*" />
     <allow-navigation href="https://*/*" />
@@ -19,12 +34,10 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-intent href="fb:*" />
-    <access launch-external="yes" origin="geo:*" />
-    <access origin="*.google.com" />
-    <access origin="*.googleapis.com" />
     <allow-intent href="market:*" />
     <resource-file src="google-services.json" target="google-services.json" />
     <preference name="loglevel" value="DEBUG" />
+    <preference name="permissions" value="none" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="15" />
     <preference name="StatusBarOverlaysWebView" value="false" />

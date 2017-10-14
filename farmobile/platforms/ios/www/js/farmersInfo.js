@@ -1,3 +1,12 @@
+function keyboardHideHandler() {
+    alert("ccccccc")
+    setTimeout(function () {
+        $(".background").empty().append('<img src="img/back.jpg" width="100%" style="height: -webkit-fill-available;"/>');
+    }, 400);
+}
+
+
+
 $(function(){
     var addContainer = true;
     $.ajax({
@@ -71,7 +80,12 @@ $(function(){
     document.body.appendChild(centerControlDiv);
     $("#upperButton").css({ 'background' : ''});
     setText();
+    document.addEventListener('hidekeyboard', onKeyboardHide, false);
 });
+
+function onKeyboardHide() {
+    alert("Hide");
+}
 
 function searchFarmer(){
     var found = 0;

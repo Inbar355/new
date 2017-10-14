@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.phonegap.Farmobile" version="3.0.0" versionName="3.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.phonegap.Farmobile" version="4.0.1" versionName="4.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>פארמוביל</name>
     <description>
         Farmobile app.
@@ -8,7 +8,7 @@
         Farmobile app
     </author>
     <icon src="icon.png" />
-    <icon src="res/icon/ios/Icon-App-152x152@2x.png" gap:platform="ios" width="152" height="152"/>
+	<icon src="res/icon/ios/Icon-App-152x152@2x.png" gap:platform="ios" width="152" height="152"/>
     <icon src="res/icon/ios/Icon-App-76x76@2x.png" gap:platform="ios" width="76" height="76"/>
     <icon src="res/icon/ios/Icon-App-120x120@2x.png" gap:platform="ios" width="120" height="120"/>
 	
@@ -26,8 +26,14 @@
     <feature name="Geolocation">
         <param name="android-package" value="org.apache.cordova.geolocation.GeoBroker" />
     </feature>
-
-    <platform name="android">
+	<feature name="SocialSharing">
+		<param name="ios-package" value="SocialSharing" />
+	</feature>
+	<feature name="SocialSharing">
+		<param name="android-package" value="nl.xservices.plugins.SocialSharing" />
+	</feature>
+	
+	<platform name="android">
         <allow-intent href="market:*" />
         <resource-file src="google-services.json" target="google-services.json" />
     </platform>
@@ -38,14 +44,14 @@
             </array>
         </config-file>
 		<config-file overwrite="false" parent="NSLocationAlwaysUsageDescription" platform="ios" target="*-Info.plist">
-        <array>
-            <string>GPS for navigation</string>
-        </array>
+			<array>
+				<string>GPS for navigation</string>
+			</array>
         </config-file>
 		<config-file overwrite="false" parent="NSLocationWhenInUseUsageDescription" platform="ios" target="*-Info.plist">
-        <array>
-            <string>GPS for navigation</string>
-        </array>
+			<array>
+				<string>GPS for navigation</string>
+			</array>
 		</config-file>
 		<config-file platform="ios" parent="NSPhotoLibraryUsageDescription" target="*-Info.plist">
 			<string>For uploading images</string>
@@ -53,7 +59,7 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-	
+    
     <access launch-external="yes" origin="geo:*" />
     <access origin="*.google.com" />
     <access origin="*.googleapis.com" />
@@ -85,9 +91,14 @@
 		<variable name="GEOLOCATION_USAGE_DESCRIPTION" value="Navigation" />
 	</plugin>
     <plugin name="cordova-plugin-file-transfer" spec="~1.5.0" />
+    <plugin name="phonegap-plugin-push" spec="~1.8.4">
+        <variable name="SENDER_ID" value="com.farmobileapp" />
+    </plugin>
 	<config-file platform="ios" parent="NSPhotoLibraryUsageDescription" target="*-Info.plist">
 		<string>For uploading images</string>
 	</config-file>
+    <plugin name="cordova-plugin-x-socialsharing" spec="^5.2.0" />
+	<gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
 	
 	<access origin="*" />
     <allow-navigation href="http://*/*" />

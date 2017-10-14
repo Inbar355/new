@@ -1,3 +1,4 @@
+var markers = []
 function geocodeAddress(resultsMap, geocoder) {
     var address = document.getElementById('address').value;
     geocoder.geocode({'address': address}, function(results, status) {
@@ -16,9 +17,33 @@ function geocodeAddress(resultsMap, geocoder) {
     });
 }
 
+function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+  var R = 6371; // Radius of the earth in km
+  var dLat = deg2rad(lat2-lat1);  // deg2rad below
+  var dLon = deg2rad(lon2-lon1); 
+  var a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2)
+    ; 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var d = R * c; // Distance in km
+  return d;
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI/180)
+}
+
 function onSuccess(position) {
+	var distance = getDistanceFromLatLonInKm(position.coords.latitude, position.coords.longitude, 32.01, 34.789022);
+	var zoomByDistance;
+	if (distance > 15)
+		zoomByDistance = 10;
+	else
+		zoomByDistance = 12;
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
+        zoom: zoomByDistance,
         center: {lat: position.coords.latitude , lng: position.coords.longitude},
         mapTypeControl: false
     });
@@ -35,13 +60,11 @@ function onError(error) {
 }
 
 function initMap() {
- /*   if (navigator.geolocation) {
-     navigator.geolocation.getCurrentPosition(onSuccess, onError,{timeout:250});
+    if (navigator.geolocation) {
+     navigator.geolocation.getCurrentPosition(onSuccess, onError,{timeout:1250});
      } else {
      onError();
-     }*/
-    onError();
-
+     }
  }
 
 function initPage(map){
@@ -49,23 +72,17 @@ function initPage(map){
 		url: "http://45.56.108.79:8080/APPserver/clientServlet",
         data: {requestType :"mainMarkers"},
         success: function(location) {
-			console.log(location);
             for(var i=0; i<location.length; i++) {
                 var data = location[i].split(",");
-				var coords = data[1].split("-");
+				var coords = data[3].split("-");
                 var latLng = new google.maps.LatLng(coords[0], coords[1]);
-				var active = 0;
 				if(data[0] != null)
 				{
-					var salePointDate = data[0].split(".");
-					var currentDate = new Date();
-					if (currentDate.getFullYear() <= salePointDate[2] && currentDate.getMonth() + 1 <= salePointDate[1] && currentDate.getDate() <= salePointDate[0]){
-						active = 1;
-						addActiveMarker(map, latLng, data[1], i * 350);
-					}
+					if (checkIfSalePointActive(data[0], data[1], data[2]))
+						addActiveMarker(map, latLng, data[3], i * 350);
+					else
+						addNonActiveMarker(map, latLng, data[3],  i * 350);
 				}
-				if (active == 0)
-					addNonActiveMarker(map, latLng, data[1],  i * 350);
 			}
 		},
         error: function(lo){   console.log("error" + lo.message);}
@@ -74,6 +91,13 @@ function initPage(map){
 	document.getElementById("search_button").onclick  = function(){
 		geocodeAddress(map, geocoder);
 	};
+	
+	$("#address").keyup(function(event){
+		if(event.keyCode == 13){
+			$("#search_button").click();
+		}
+	});
+	
     var centerControlDiv = document.createElement('button');
     centerControlDiv.className="btn-block";
     centerControlDiv.id="upperButton";
@@ -96,15 +120,36 @@ function initPage(map){
     setText();
 }
 
+function shareViaWhatsapp() {
+	try {
+		var  message = 'הורדתי הרגע את האפליקציה המדהימה של פארמוביל שמגיעים עד לשכונה עם מכירה ישירה של תוצרת חקלאית סופר טריה! מומלץ בחום!';
+		var url= 'https://play.google.com/store/apps/details?id=com.phonegap.Farmobile';
+
+		var onSuccess = function (result) {
+			alert("שיתפת בהצלחה את הנקודה הנוכחית !");
+		};
+
+		var onError = function (msg) {
+		};
+
+		window.plugins.socialsharing.shareViaWhatsApp(message, null, url, onSuccess, onError);
+	}
+	catch (e){
+		console.log(e);
+	}
+}
+
 function addActiveMarker(map, position, id, timeout){
 	window.setTimeout(function() {
 		var marker = new google.maps.Marker({
 		id: id,
+		color: "red",
 		position: position,
 		map: map,
 		animation: google.maps.Animation.DROP,
-		icon: "img/red_pepper.png"
+		icon: "img/pepper.png",
 		});
+		markers.push(marker);
 		google.maps.event.addListener(marker, 'click', function() {
 			if (this.getAnimation() != null) 
 				this.setAnimation(null);
@@ -123,10 +168,12 @@ function addNonActiveMarker(map, position, id, timeout){
 		var marker = new google.maps.Marker({
 		id: id,
 		position: position,
+		color: "yellow",
 		map: map,
 		animation: google.maps.Animation.DROP,
-		icon: "img/green_pepper.png"
+		icon: "img/yellow_pepper.png"
 		});
+		markers.push(marker);
 		google.maps.event.addListener(marker, 'click', function() {
 			if (this.getAnimation() != null) 
 				this.setAnimation(null);
@@ -148,6 +195,17 @@ function toggleBounce(marker) {
     }
 }
 
+function filterSalePointByState(colorOfPepper){
+	for(var i = 0; i < markers.length; i++)
+	{
+		if(markers[i].color != colorOfPepper)
+            markers[i].setVisible(false);
+        
+		else
+			markers[i].setVisible(true);
+	}
+}
+
 function deleteLastChar() {
     $('#phone').val(
         function(index, value){
@@ -155,52 +213,26 @@ function deleteLastChar() {
         })
 }
 
-function sendAddress() {
-    //check city validation
-    var data = document.getElementById("requiredAddress").value;
-    var phoneNumber = document.getElementById("phone").value;
-    var name = document.getElementById("name").value;
+function shareFacebook(){
+	alert("אנא המתן, משתף");
+	var options = {
+		method: "share",
+		href: "https://play.google.com/store/apps/details?id=com.phonegap.Farmobile",
+		hashtag: '#המהפכההתחילה',
+		quote: "גם אני קניתי ותמכתי במהפכה של פארמוביל ! הורידו את האפליקציה החדשה שלנו עכשיו לאדנרואיד ואייפון!",
+		share_feedWeb: true // iOS only
+	};
 
-    if (checkValues(data, phoneNumber, name) ){
-        $.ajax({
-            url: "http://45.56.108.79:8080/APPserver/clientServlet",
-            data: {requestType :"sendNewAddress", newAddress: data, name: name,phone: phoneNumber },
-            success: function() {
-                alert ("הבקשה נשלחה בהצלחה.ניתן לשלוח בקשה אחת בלבד בכל הפעלה של האפקליציה.");
-                backToRequestPointBtn();
-            },
-            error: function(lo){
-                alert('אירעה שגיאה, נא נסה שוב');
-                console.log(lo);
-            }
-        });
-    }
-}
+	function  onSuccess () {
+		setTimeout(function () {
+			$(".background").empty().append('<img src="img/back.jpg" width="100%" style="height: -webkit-fill-available;"/>');
+		}, 200);
+	}
 
-function checkValues(data, phone, name) {
-    if (data.length > 50){
-        alert("לא ניתן להכניס יותר מ50 תווים לבקשה");
-        return false;
-    }
-    else if (name.length > 20) {
-        alert("השם חייב להיות לכל היותר באורך 20 תווים");
-        return false;
-    }
-    else if (phone.length != 10) {
-        alert("נא להכניס מספר בן 10 ספרות בדיוק");
-        return false;
-    }
-    else if (data.length  < 2){
-        alert("נא הכנס יעד מבוקש");
-        return false;
-    }
-    else if (name.length < 2) {
-        alert("נא הכנס שם תקין ליצירת קשר");
-        return false;
-    }
-    else if (phone.length < 10) {
-        alert("נא הכנס מספר טלפון תקין ליצירת קשר");
-        return false;
-    }
-    return true;
+	function  onError (error) {
+		setTimeout(function () {
+			$(".background").empty().append('<img src="img/back.jpg" width="100%" style="height: -webkit-fill-available;"/>');
+		}, 10);
+	}
+	facebookConnectPlugin.showDialog(options,  onSuccess,  onError);
 }

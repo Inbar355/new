@@ -52,10 +52,11 @@ $(function(){
     centerControlDiv.appendChild(rightLogo);
     centerControlDiv.index = 1;
     document.body.appendChild(centerControlDiv);
-
     setText();
+    window.addEventListener('native.keyboardhide', function () {
+        alert("aaa");
+    });
 });
-
 
 function searchProduce(){
     var found = 0;

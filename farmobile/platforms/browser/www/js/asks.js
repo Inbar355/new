@@ -18,6 +18,7 @@ $(function(){
     centerControlDiv.appendChild(rightLogo);
     centerControlDiv.index = 1;
     document.body.appendChild(centerControlDiv);
+    setText();
 });
 
 function chackVars() {
@@ -40,7 +41,7 @@ function updateReqProvider() {
     var phoneNumber = document.getElementById("phoneProvider").value;
     var lname = document.getElementById("lnameProvider").value;
 
-    if (checkValues(null, phoneNumber, fname, lname) ){
+    if (validPhoneInput() && checkValues(null, phoneNumber, fname, lname) ){
         $.ajax({
             url: "http://45.56.108.79:8080/APPserver/clientServlet",
             data: {requestType :"joinUs", firstName: fname, lastName: lname,phone: phoneNumber },
@@ -63,7 +64,7 @@ function updateReq() {
     var lname = document.getElementById("lname").value;
     var address = document.getElementById("address").value;
 
-    if (checkValues(address, phoneNumber, fname, lname)){
+    if (validPhoneInput() && checkValues(address, phoneNumber, fname, lname)){
         $.ajax({
             url: "http://45.56.108.79:8080/APPserver/clientServlet",
             data: {requestType :"sendNewAddress", firstName: fname, lastName: lname,phone: phoneNumber, address: address },
@@ -109,7 +110,7 @@ function checkValues(address, phone, name, lname) {
 }
 
 function deleteRequests(){
-    document.getElementById("RequestImg").style.minHeight = "650px";
+    document.getElementById("RequestImg").style.minHeight = "550px";
     document.getElementById('fname').value = "";
     document.getElementById('lname').value = "";
     document.getElementById('phone').value = "";
@@ -117,8 +118,14 @@ function deleteRequests(){
 
 }
 
+function validPhoneInput(){
+	var phoneNumber = document.getElementById('phoneProvider').value();
+	if(isNaN(phoneNumber))
+		alert('מספר טלפון שגוי');
+}
+
 function deleteRequestsProv(){
-    document.getElementById("RequestImg").style.minHeight = "500px";
+    document.getElementById("RequestImg").style.minHeight = "460px";
     document.getElementById('fnameProvider').value = "";
     document.getElementById('lnameProvider').value = "";
     document.getElementById('phoneProvider').value = "";

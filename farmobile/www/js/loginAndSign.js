@@ -1,5 +1,23 @@
+var loginCount =0;
+
 $(function(){
-    var centerControlDiv = document.createElement('button');
+    if(sessionStorage.getItem('userLogin')) {
+        document.getElementById("userName").innerHTML = " שלום " + sessionStorage.getItem('userLogin');
+        $.ajax({
+            url: "http://45.56.108.79:8080/APPserver/clientServlet",
+            data: {requestType :"isUserLogIn", userName: sessionStorage.getItem('userLogin')},
+            success: function(array) {
+                if(array[0] != 0)//user already log Into the system
+                    window.location.href = "mainPage.html";
+            },
+            error: function(lo){   console.log("error" + lo.message);}
+        });
+    }
+    else{
+        document.getElementById("userName").innerHTML = " שלום אורח";
+    }
+	
+	var centerControlDiv = document.createElement('button');
     centerControlDiv.className="btn-block";
     centerControlDiv.id="upperButton";
     centerControlDiv.disabled = true;
@@ -17,44 +35,41 @@ $(function(){
     centerControlDiv.appendChild(rightLogo);
     centerControlDiv.index = 1;
     document.body.appendChild(centerControlDiv);
-
-    if(sessionStorage.getItem('userLogin')) {
-        document.getElementById("userName").innerHTML = " שלום " + sessionStorage.getItem('userLogin');
-        $.ajax({
-            url: "http://45.56.108.79:8080/APPserver/clientServlet",
-            data: {requestType :"isUserLogIn", userName: sessionStorage.getItem('userLogin')},
-            success: function(array) {
-                if(array[0] != 0)//user already log Into the system
-                    window.location.href = "mainPage.html";
-            },
-            error: function(lo){   console.log("error" + lo.message);}
-        });
-    }
-    else{
-        document.getElementById("userName").innerHTML = " שלום אורח";
-    }
 });
 
 function Login() {
-    var userName = document.getElementById('loginUserName').value;
-    var userPassword = document.getElementById('loginPassword').value;
-    document.getElementById('dataMissMatch').innerText = "";
+    if (loginCount == 5){
+        alert("לא ניתן לנסות להתחבר יותר מ5 פעמים. אנא המתן דקה ותוכל לנסות שוב.");
+        $("#simpleLogin").css('display', 'none');
+        setTimeout(function () {
+            $("#simpleLogin").css('display', 'flex');
+            $("#simpleLogin").css('text-align', 'center');
+        }, 10000);
+    }
+    else{
+        loginCount++;
+        var userName = document.getElementById('loginUserName').value;
+        var userPassword = document.getElementById('loginPassword').value;
+        if (userName !="" && userPassword !=""){
+            ajaxForLogin(userName, userPassword);
+        }
+        else{
+            alert("חסרים פרטים לכניסה");
+        }
+    }
+}
 
-    if (userName !="" && userPassword !=""){
-        ajaxForLogin(userName, userPassword);
-    }
-   else{
-        alert("חסרים פרטים לכניסה");
-        document.getElementById('dataMissMatch').innerText = ".נא למלא את כל הפרטים *"
-    }
+function changeBirthdayFormat(birthday) {
+    var init = birthday.split("/");
+    return init[1] +"/"+init[0]+"/"+init[2];
 }
 
 function loginToFB() {
     try {
-        facebookConnectPlugin.login(["public_profile"], function (response) {
-            facebookConnectPlugin.api('/me?fields=age_range,name,picture{url},id',["public_profile"], function (data) {
-                /*cahngeProfilePic(data.picture.data.url);*///to the next relise - change profile pic to FB profile pic
-                ajaxForLogin(data.id, null, data.name, data.age_range.min);
+        facebookConnectPlugin.login(["public_profile", "user_birthday"], function (response) {
+            facebookConnectPlugin.api('/me?fields=birthday,name,picture{url},id',["public_profile", "user_birthday"], function (data) {
+               // cahngeProfilePic(data.picture.data.url);//to the next relise - change profile pic to FB profile pic
+                ajaxForLogin(data.id, null, data.name, changeBirthdayFormat(data.birthday));
             });
         }, function (er) {
             console.log("error : " + er);
@@ -73,23 +88,29 @@ function ajaxForLogin(userName, userPassword, FBname, FBBDay){
         success: function(array) {
             if(array[0] == -1) {//user name + password doesn't found
                 if (FBname == null){
-					document.getElementById('dataMissMatch').innerText = ".שם משתמש זה אינו קיים, אנא הרשם *";
+                    var comment = "שם משתמש זה אינו קיים, אנא הרשם. נותרו " + (5- loginCount) + " ניסיונות";
+					alert(comment);
 					deleteLogin();
 				}
-                else
+                else {
                     ajaxForSignUp(FBname, userPassword, userName, FBBDay, "");
+                }
             }
             else{
                 if(array[1] == 1) {//the user exists
                     if(check) 
 						FBname == null ? sessionStorage.setItem('userLogin', userName) : sessionStorage.setItem('userLogin', FBname + "@" + userName);
                     alert("התחברת בהצלחה !");
+                    loginCount =0;
                     setTimeout(function () {
                         window.location.href = "mainPage.html"; //
                     }, 1000);
                 }
-                else
-                    document.getElementById('dataMissMatch').innerText = ".ישנה אי התאמה בין שם המשתמש לסיסמה *"
+                else{
+                    var comment =  "ישנה אי התאמה בין שם המשתמש לסיסמה, נותרו "  + (5- loginCount) + " ניסיונות";
+                    alert(comment);
+                }
+
             }
         },
         error: function(lo){ console.log("error" + lo.message); }
@@ -113,7 +134,7 @@ function signUp() {
         document.getElementById('dataMissing').innerText = ".נדרשת סיסמה עד 8 תווים *";
 	else if (fullName == "admin")
         document.getElementById('dataMissing').innerText = "אסור להשתמש בשם שנבחר, נא לבחור שם אחר";
-    else if (userName.index("@") > 0)
+    else if (userName.indexOf("@") > 0 || userName.indexOf("#") > 0)
         document.getElementById('dataMissing').innerText = "אסור להשתמש בתווים שאינם אותיות, נא לבחור שם אחר";
     else
         ajaxForSignUp(userName, userPassword1,fullName,date,address);
@@ -136,12 +157,12 @@ function ajaxForSignUp(userName, userPassword1,fullName ,date, address) {
 				window.location.href = "mainPage.html";
             }
         },
-        error: function(lo){ console.log("error" + lo.message); }
+        error: function(lo){alert("err" + lo); console.log("error" + lo.message); }
     });
 }
 
 function deleteSignIn(){
-	document.getElementById("loginImg").style.minHeight = "500px";
+	document.getElementById("loginImg").style.minHeight = "460px";
     document.getElementById('dataMissing').innerText = "";
     document.getElementById('signUserName').value = "";
     document.getElementById('signPassword').value = "";
@@ -152,8 +173,7 @@ function deleteSignIn(){
 }
 
 function deleteLogin(){
-	document.getElementById("loginImg").style.minHeight = "900px";
-    document.getElementById('dataMissMatch').innerText = "";
+	document.getElementById("loginImg").style.minHeight = "770px";
     document.getElementById('loginUserName').value = "";
     document.getElementById('loginPassword').value = "";
 }

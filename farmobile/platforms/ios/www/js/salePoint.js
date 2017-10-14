@@ -11,29 +11,25 @@ $(function(){
 		url: "http://45.56.108.79:8080/APPserver/clientServlet",
         data: {requestType :"getSalePointData", idOfSalePoint: idOfSP},
         success: function(information) {
-			console.log(information);
 			var flag = 1;
-			
 			if (information[1] != null){
-				var date = information[1].split("-");
-				var currentDate = new Date();
-				if(currentDate.getFullYear() <= date[0] && currentDate.getMonth() + 1 <= date[1] && currentDate.getDate() <= date[2])
+				if(checkIfSalePointActive(information[1], information[2], information[3]))
 				{
-					flag = 0;
-					document.getElementById('updateText').innerText = "נקודת המכירה פעילה";
+					document.getElementById('updateText').innerText = "מכירה פעילה";
 					document.getElementById('activeSalePoint').checked = true;
-					document.getElementById('dateInput').innerText = date[2] + "." + date[1] + "." + date[0];
-					var time1 = information[2].split(":");
-					var time2 = information[3].split(":");
-					document.getElementById('timeInput').innerText =time1[0] + ":" + time1[1] + " - " +  time2[0] + ":" + time2[1];
+					flag = 0;
 				}
 			}
-			if(flag){
-				document.getElementById('activeSalePoint').disabled = true;
-				document.getElementById('updateText').innerText = "נקודת המכירה אינה פעילה";
-				document.getElementById('dateInput').innerText = "אין תאריך למכירה זו";
-				document.getElementById('timeInput').innerText = "אין שעות למכירה זו";
-			}
+		if(flag){
+			document.getElementById('updateText').innerText = "מכירה אינה פעילה";
+			document.getElementById('activeSalePoint').disabled = true;
+		}
+				
+			
+			document.getElementById('dateInput').innerText = information[1];
+			var time1 = information[2].split(":");
+			var time2 = information[3].split(":");
+			document.getElementById('timeInput').innerText = time1[0] + ":" + time1[1] + " - " +  time2[0] + ":" + time2[1];
 			
 			address = information[0];
             document.getElementById('addressInput').innerText =information[0];
@@ -105,7 +101,35 @@ $(function(){
 	
     setText();
 	$(".stars").height($("#send").height()).width($("#send").width()/4);
+	$("#shareBtn").click(shareProtest);
 });
+
+
+function shareProtest() {
+	try {
+		var options = {
+			message: 'הורדתי הרגע את האפליקציה המדהימה של פארמוביל שמגיעים עד לשכונה עם מכירה ישירה של תוצרת חקלאית סופר טריה! מומלץ בחום!', // not supported on some apps (Facebook, Instagram)
+			subject: 'פארמוביל - המהפכה מתחילה אצלך בשכונה', // fi. for email
+			files: ['', ''], // an array of filenames either locally or remotely
+			url: 'https://play.google.com/store/apps/details?id=com.phonegap.Farmobile',
+			chooserTitle: 'Pick an app' // Android only
+		};
+
+		var onSuccess = function (result) {
+			console.log("שיתפת בהצלחה את הנקודה הנוכחית !");
+		};
+
+		var onError = function (msg) {
+			console.log("Sharing failed with message: " + msg);
+		};
+
+		window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
+	}
+	catch (e){
+		alert(e);
+	}
+}
+
 
 function createUsersComment(insertInto, text){
 	var img = document.createElement('img');
@@ -176,18 +200,17 @@ function navigate(){
 	}
 }
 
-function shareIt() {
+function shareFacebook() {
 	alert("אנא המתן, משתף");
 	var options = {
 		method: "share",
-		href: "https://www.farmobile.co.il/",
+		href: "https://play.google.com/store/apps/details?id=com.phonegap.Farmobile",
 		hashtag: '#המהפכההתחילה',
-		quote: "גם אני קניתי ותמכתי במהפכה של פארמוביל !",
+		quote: "גם אני קניתי ותמכתי במהפכה של פארמוביל ! הורידו את האפליקציה החדשה שלנו עכשיו לאדנרואיד ואייפון!",
 		share_feedWeb: true // iOS only
 	};
 
 	function  onSuccess () {
-		alert("שיתפת את נקודת המכירה בהצלחה ! תודה שעזרת לנו לקדם את המהפכה !");
 		setTimeout(function () {
 			$(".background").empty().append('<img src="img/back.jpg" width="100%" style="height: -webkit-fill-available;"/>');
 		}, 200);
@@ -220,10 +243,9 @@ function sendRank(){
 function addComment(){
 
 	var idOfSP = getUrlVars()["id"];
-	var text = prompt("אנא הכנס תגובה - עד 8 מילים");
+	var text = prompt("אנא הכנס תגובה - עד 30 תווים");
 	if(text != "" & text != null){
-		var size = text.split(" ");
-		if (size.length <= 8){
+		if (text.length <= 30){
 			$.ajax({
 				url: "http://45.56.108.79:8080/APPserver/clientServlet",
 				data: {requestType :"addSalePointComment", idOfSalePoint: idOfSP, comment: text},

@@ -1,6 +1,6 @@
 #map {
     width: auto;
-    height: 101%;
+    height: 100%;
     background-color: grey;
 }
 
@@ -8,7 +8,6 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-	padding-bottom: 1%;
 }
 
 .sendCloseConatiner{
@@ -23,6 +22,27 @@ html, body {
     height: fit-content;
 }
 
+#floating-panel-share {
+    display: flex;
+    text-align: right;
+    position: absolute;
+    z-index: 1;
+    bottom: 7%;
+    left: 0%;
+}
+
+#floating-panel-index {
+    display: flex;
+    text-align: right;
+    position: absolute;
+    z-index: 1;
+    bottom: 0%;
+    left: 0%;
+    background-color:  rgba(245, 245, 245, 0.72);
+    width: 100%;
+    height: 7%;
+}
+
 #floating-panel {
     display: flex;
     text-align: right;
@@ -31,7 +51,7 @@ html, body {
     font-family: 'Felix007', serif;
     line-height: 30px;
     padding-left: 10px;
-    top: 10%;
+    top: 13%;
 }
 .bigButton{
     vertical-align: middle;
@@ -66,16 +86,6 @@ html, body {
 	font-family: 'Felix007', serif;
 	font-size: 18px;
 }
-#smallTrack{
-    width: 45%;
-    height: 13%;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    z-index: 0;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-}
 
 #closeBtn{
     padding-top: 3%;
@@ -99,22 +109,34 @@ html, body {
     width: 200px;
 }
 
-#orderButton{
-    background: url('../img/back.png') #f2f2f2;
-	background-position: left;
+#search_button{
+    display: inline-block;
+    width: 10%;
+    height: 75%;
+    position: absolute;
+    left: 18px;
+    top: 4px;
+    background-size: cover;
     background-repeat: no-repeat;
-    background-size: 48px 60px;
-    padding-left: 41px;
-    color: #000;
-	width: 100%;
+    background-image: url(../img/1.png);
 }
 
-#search_button{
-	display: inline-block;
-    width: 45px;
-    height: 29px;
-    position: relative;
-    left: 35px;
-    top: 7px;
-    background-image: url(../img/1.png);
+#indexPeppers{
+    width: 100%;
+    position: absolute;
+    z-index: 5;
+    bottom: 0;
+    opacity: 0.75;
+}
+
+.pepperText{
+    font-family: 'Felix007', serif;
+    font-size: 15px;
+    color: black;
+    white-space: pre;
+    align-self: center;
+}
+
+.pepperIMG{
+    height:100%;
 }

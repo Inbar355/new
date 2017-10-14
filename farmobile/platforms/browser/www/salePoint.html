@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/salePointCSS.css">
     <link rel="stylesheet" href="css/sideAndUpperMenuCSS.css">
+    <script type="text/javascript" src="js/SocialSharing.js"></script>
+    <script src="phonegap.js"></script>
 	<script type="text/javascript" src="cordova.js"></script>
     <title>Sale Point</title>
 </head>
@@ -25,28 +27,31 @@
                 <a id="userName" onclick="myDetails()"></a></td>
         </tr>
         <tr>
-            <td><a href="mainPage.html">נקודות מכירה  <img src="img/car.gif"></a></td>
+            <td><a href="mainPage.html">נקודות מכירה  <img src="img/pointer.png"></a></td>
         </tr>
         <tr>
             <td><a href="protestInfo.html">על המחאה  <img src="img/protest_sign.jpg"></a></td>
         </tr>
+<!--        <tr>
+            <td><a href="farmersInfoGeneral.html">אודות החקלאים  <img src="img/ICON_FARMER.png"></a></td>
+        </tr>-->
         <tr>
-            <td><a href="farmersInfoGeneral.html">אודות החקלאים  <img src="img/farmer.jpg"></a></td>
-        </tr>
-        <tr>
-            <td><a href="produceInfoGeneral.html">אודות התוצרת  <img src="img/fruits.jpg"></a></td>
+            <td><a href="produceInfoGeneral.html">אודות התוצרת  <img src="img/ICON_HARVEST.png"></a></td>
         </tr>
         <tr>
             <td><a href="loginAndSign.html">התחבר/הרשם למועדון לקוחות <img src="img/login.png"></a></td>
         </tr>
         <tr>
-            <td><a href="joinUs.html?Prov=false">הזמן נקודת מכירה  <img src="img/makeorder.jpg"></a></td>
+            <td><a href="joinUs.html?Prov=false">הזמן נקודת מכירה  <img src="img/ICON_SIGN.png"></a></td>
         </tr>
         <tr>
-            <td><a href="joinUs.html?Prov=true">הצטרף כספק  <img src="img/joinUs.jpg"></a></td>
+            <td><a href="joinUs.html?Prov=true">הצטרף כספק  <img src="img/ICON_JOIN.png"></a></td>
         </tr>
         <tr>
-            <td><a href="TermsOfUse.html">תנאי שימוש  <img src="img/terms.jpg"></a></td>
+            <td><a href="TermsOfUse.html">תנאי שימוש  <img src="img/info.png"></a></td>
+        </tr>
+        <tr>
+            <td><a href="aboutUs.html">מפתחי האפליקציה  <img src="img/bulb-icon.png"></a></td>
         </tr>
     </table>
 </div>
@@ -56,118 +61,136 @@
 <button class="btn btn-block invisibleRow" disabled></button>
 <button class="btn btn-block invisibleRow" disabled></button>
 <button class="btn btn-block invisibleRow" disabled></button>
+<button class="btn btn-block invisibleRow" disabled></button>
+<button class="btn btn-block invisibleRow" disabled></button>
 
-<div align="right">
-    <div class="col-xs-3"></div>
-    <div class="col-xs-3">
+<div align="center">
+    <div class="col-xs-4">
+        <img id="FBBtn" src="img/Facebook-icon.png" onclick="shareFacebook()">
+    </div>
+    <div class="col-xs-4">
 		<a onclick="navigate()"><img src="img/waze.png" style="width: 100%;"></a>
     </div>
-    <div class="col-xs-5" style="top: 7px;">
-		<a onclick="shareIt()"><img src="img/faceBook.jpg" style="width: 100%;"></a>
+    <div class="col-xs-4" >
+        <img id="shareBtn" src="img/share.png" style="width: 100%;">
     </div>
 </div>
 <button class="btn btn-block invisibleRow" disabled></button>
 <button class="btn btn-block invisibleRow" disabled></button>
-<div align="right">
-    <div class="col-xs-2"></div>
-    <div class="col-xs-10">
-        <button type="button" class="newFont btn-block" disabled>: מידע אודות נקודת המכירה</button>
+<div align="right" class="ani1 animated">
+    <div class="col-xs-12">
+        <button type="button" class="newFont btn-block header" disabled>: מידע אודות נקודת המכירה</button>
     </div>
 </div>
-<button class="btn btn-block invisibleRow" disabled></button>
-<button class="btn btn-block invisibleRow" disabled></button>
-
+    <div class="information ani1 animated">
 <div class="col-xs-3"></div>
 <div class="col-xs-7">
 	<label for="activeSalePoint" id="updateText" class="textlabel"></label>
 </div>
 <div class="col-xs-1">
-	<input type="checkbox" id="activeSalePoint">
+	<input type="radio" id="activeSalePoint">
 </div>
 <button class="btn btn-block invisibleRow" disabled></button>
 <div align="right">
-    <div class="col-xs-7">
+    <div class="col-xs-9">
         <button id="dateInput" class="inputBtn btn-block" disabled></button>
     </div>
-    <div class="col-xs-5">
-        <button type="button" class="newFont btn-block" disabled>: תאריך</button>
+    <div class="col-xs-3">
+        <img src="img/Calender.png" id="dateImg" class="detailsImgs">
     </div>
 </div>
 <button class="btn btn-block invisibleRow" disabled></button>
 <div align="right">
-    <div class="col-xs-7">
+    <div class="col-xs-9">
         <button id="addressInput"class="inputBtn btn-block" disabled></button>
     </div>
-    <div class="col-xs-5">
-        <button type="button" class="newFont btn-block" disabled>: כתובת</button>
+    <div class="col-xs-3">
+        <img src="img/home-icon.png" id="addressImg" class="detailsImgs">
     </div>
 </div>
 <button class="btn btn-block invisibleRow" disabled></button>
 <div align="right">
-    <div class="col-xs-7">
+    <div class="col-xs-9">
         <button id="timeInput"class="inputBtn btn-block" disabled></button>
     </div>
-    <div class="col-xs-5">
-        <button type="button" class="newFont btn-block" disabled>: שעות מכירה</button>
+    <div class="col-xs-3">
+        <img src="img/clock-icon.png" id="clockImg" class="detailsImgs">
     </div>
 </div>
 <button class="btn btn-block invisibleRow" disabled></button>
 <div align="right">
-    <div class="col-xs-7">
+    <div class="col-xs-9">
         <button id="pointComment"class="inputBtn btn-block" disabled></button>
     </div>
-    <div class="col-xs-5">
-        <button type="button" class="newFont btn-block" id = "notes" disabled>: הערה</button>
+    <div class="col-xs-3">
+        <img src="img/pencil-icon.png" id="noteImg" class="detailsImgs">
     </div>
 </div>
 <button class="btn btn-block invisibleRow" disabled></button>
 <div align="right">
-    <div class="col-xs-7">
+    <div class="col-xs-9">
         <button id="rankInput"class="inputBtn btn-block" disabled></button>
     </div>
-    <div class="col-xs-5">
-        <button type="button" class="newFont btn-block" disabled>: דירוג</button>
+    <div class="col-xs-3">
+        <img src="img/heart.png" id="likeImg" class="detailsImgs">
     </div>
 </div>
 <button class="btn btn-block invisibleRow" disabled></button>
+        </div>
 <!-- <div class="col-xs-1"></div>
 <div class="col-xs-6">
 	<label class="textlabel">: לחץ על מנת לקבל תזכורת עבור נקודת מכירה זו</label>
 </div>
 <button class="btn btn-block invisibleRow" disabled></button>
 <button type="button" id="btnAnimate" class="btn btn-default btn-lg" onclick="setPushMsg()"></button> -->
-<h3 id="rateHeader">: דרגו נקודת מכירה זו</h3>
+    <button class="btn btn-block invisibleRow" disabled></button>
+    <div align="right" class="ani2 animated">
+        <div class="col-xs-12">
+            <button type="button" class="newFont btn-block header" disabled>: דרגו נקודת מכירה זו</button>
+        </div>
+    </div>
+
+    <div id="rankInfo" class="information ani2 animated">
+	<button class="btn btn-block invisibleRow" disabled></button>
 <br>
-<div class=" container" style="overflow-y: -webkit-paged-y;">
-    <div class="col-xs-5">
+<div id ="rankContainer"  class=" container ani2 animated" style="overflow-y: -webkit-paged-y;">
+    <div class="col-xs-4">
         <button type="button" id="send" class="btn btn-block" onclick="sendRank()" disabled>דרג</button>
     </div>
-    <div class="col-xs-7" id="starsContainer" style="padding-left: 17%;">
+    <div class="col-xs-8" id="starsContainer" style="padding-left: 17%;">
         <img src="img/star.png" id="1start" class="stars" onclick="getRank(this)">
         <img src="img/star.png" id="2start" class="stars" onclick="getRank(this)">
         <img src="img/star.png" id="3start" class="stars" onclick="getRank(this)">
         <img src="img/star.png" id="4start" class="stars" onclick="getRank(this)">
         <img src="img/star.png" id="5start" class="stars" onclick="getRank(this)">
     </div>
+    <button class="btn btn-block invisibleRow" disabled></button>
 </div>
-<button class="btn btn-block invisibleRow" disabled></button>
-<button class="btn btn-block invisibleRow" disabled></button>
-<div class="col-xs-2"></div>
-<div class="col-xs-10">
-	<button type="button" class="newFont btn-block" disabled>: חוות-דעת לקוחות </button>
-</div>
-<div class="bubble-list">
+        <button class="btn btn-block invisibleRow" disabled></button>
+    </div>
+
+    <div id="commentInfo" class="information ani3 animated">
+        <div align="right">
+            <div class="col-xs-12">
+                <button type="button" class="newFont btn-block header" disabled>: חוות-דעת של לקוחות</button>
+            </div>
+        </div>
+<div class="bubble-list ani3 animated">
 	<div class="bubble clearfix" id="commentContainer"></div>
 </div>
-<div class="col-xs-2"></div>
-<div class="col-xs-10">
+
+<div class="col-xs-12 ani3 animated">
+    <button class="btn btn-block invisibleRow" disabled></button>
 	<button id="comment" class="inputBtn btn-block" onclick="addComment()" >הוסף תגובה</button>
 </div>
-<button class="btn btn-block invisibleRow" disabled></button>
-<button class="btn btn-block invisibleRow" disabled></button>
-<div class="col-xs-2"></div>
-<div class="col-xs-10">
-	<button type="button" class="newFont btn-block" disabled>: מידע אודות התוצרת בה</button>
+</div>
+
+<div id="productPics" class="information ani4 animated">
+	<div class="col-xs-1"></div>
+	<div class="col-xs-11">
+		<button type="button" style="white-space: pre-line;" class="newFont btn-block ani4 animated" disabled>:מידע אודות התוצרת בנקודה זו
+            (יתכנו שינויים)</button>
+	</div>
 </div>
 </div>
 </div>

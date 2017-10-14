@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head dir="rtl">
+<head>
     <meta http-equiv="Content-Security-Policy" content="default-src * gap: ws: https://ssl.gstatic.com;script-src 'self' 'unsafe-inline' 'unsafe-eval' * data: blob:;style-src 'self' 'unsafe-inline' * data: blob:;img-src * data: 'unsafe-inline' 'self' content:;">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="initial-scale=1, width = device-width">
@@ -23,32 +23,34 @@
                 <a id="userName" onclick="myDetails()"></a></td>
         </tr>
         <tr>
-            <td><a href="mainPage.html">נקודות מכירה  <img src="img/car.gif"></a></td>
+            <td><a href="mainPage.html">נקודות מכירה  <img src="img/pointer.png"></a></td>
         </tr>
         <tr>
             <td><a href="protestInfo.html">על המחאה  <img src="img/protest_sign.jpg"></a></td>
         </tr>
+     <!--   <tr>
+            <td><a href="farmersInfoGeneral.html">אודות החקלאים  <img src="img/ICON_FARMER.png"></a></td>
+        </tr>-->
         <tr>
-            <td><a href="farmersInfoGeneral.html">אודות החקלאים  <img src="img/farmer.jpg"></a></td>
-        </tr>
-        <tr>
-            <td><a href="produceInfoGeneral.html">אודות התוצרת  <img src="img/fruits.jpg"></a></td>
+            <td><a href="produceInfoGeneral.html">אודות התוצרת  <img src="img/ICON_HARVEST.png"></a></td>
         </tr>
         <tr>
             <td><a href="loginAndSign.html">התחבר/הרשם למועדון לקוחות <img src="img/login.png"></a></td>
         </tr>
         <tr>
-            <td><a href="joinUs.html?Prov=false">הזמן נקודת מכירה  <img src="img/makeorder.jpg"></a></td>
+            <td><a href="joinUs.html?Prov=false">הזמן נקודת מכירה  <img src="img/ICON_SIGN.png"></a></td>
         </tr>
         <tr>
-            <td><a href="joinUs.html?Prov=true">הצטרף כספק  <img src="img/joinUs.jpg"></a></td>
+            <td><a href="joinUs.html?Prov=true">הצטרף כספק  <img src="img/ICON_JOIN.png"></a></td>
         </tr>
         <tr>
-            <td><a href="TermsOfUse.html">תנאי שימוש  <img src="img/terms.jpg"></a></td>
+            <td><a href="TermsOfUse.html">תנאי שימוש  <img src="img/info.png"></a></td>
+        </tr>
+        <tr>
+            <td><a href="aboutUs.html">מפתחי האפליקציה  <img src="img/bulb-icon.png"></a></td>
         </tr>
     </table>
 </div>
-<div class="background"><img src="img/back.jpg" width="100%" style="height: -webkit-fill-available;"/></div>
 <br><br><br><br>
 
 <div class="Request-wrap" id = "RequestImg">
@@ -58,21 +60,21 @@
         <div class="Request-form">
             <div class="sign-in-htm">
                 <div class="group">
-                    <label for="fname" class="label" style=" margin-right: 19%;color: black;">: שם פרטי</label>
-                    <input id="fname" type="text" class="input text_align unFocused">
+                    <label for="fname" class="label" style=" margin-right: 7%;color: black;">: שם פרטי</label>
+                    <input id="fname" dir="rtl" type="text" class="input text_align unFocused">
                 </div>
                 <div class="group">
-                    <label for="lname" class="label" style="margin-right: 19%;color: black;">: שם משפחה</label>
-                    <input id="lname" type="text" class="input text_align unFocused">
+                    <label for="lname" class="label" style="margin-right: 7%;color: black;">: שם משפחה</label>
+                    <input id="lname" dir="rtl" type="text" class="input text_align unFocused">
                 </div>
                 <div class="group">
-                    <label for="phone" class="label" style="margin-right: 19%;color: black;">: מספר טלפון</label>
-                    <input id="phone" type="text" class="input text_align unFocused">
+                    <label for="phone" class="label" style="margin-right: 7%;color: black;">: מספר טלפון</label>
+                    <input id="phone" type="tel" class="input text_align unFocused">
                 </div>
                 <div class="group">
-                    <label for="address" class="label" style="margin-right: 63%;color: black;">: הכנס כתובת מבוקשת</label>
+                    <label for="address" class="label" style="margin-right: 42%;color: black;">: הכנס כתובת מבוקשת</label>
                     <label class="label" style="color: red; font-size: small" >עד 25 תווים</label>
-                    <input id="address" type="text" class="input text_align unFocused" >
+                    <input id="address" dir="rtl" type="text" class="input text_align unFocused" >
                 </div>
                 <button class="btn btn-block invisibleRow" disabled></button>
                 <div class="group" id="sendData">
@@ -83,19 +85,17 @@
             </div>
             <div class="sign-up-htm">
                 <div class="group">
-                    <label for="fnameProvider" class="label" style=" margin-right: 19%;color: black;">: שם פרטי</label>
-                    <input id="fnameProvider" type="text" class="input text_align unFocused">
+                    <label for="fnameProvider" class="label" style=" margin-right: 7%;color: black;">: שם פרטי</label>
+                    <input id="fnameProvider" dir="rtl" type="text" class="input text_align unFocused">
                 </div>
                 <div class="group">
-                    <label for="lnameProvider" class="label" style="margin-right: 19%;color: black;">: שם משפחה</label>
-                    <input id="lnameProvider" type="text" class="input text_align unFocused">
+                    <label for="lnameProvider" class="label" style="margin-right: 7%;color: black;">: שם משפחה</label>
+                    <input id="lnameProvider" dir="rtl" type="text" class="input text_align unFocused">
                 </div>
                 <div class="group">
-                    <label for="phoneProvider" class="label" style="margin-right: 19%;color: black;">: מספר טלפון</label>
-                    <input id="phoneProvider" type="text" class="input text_align unFocused">
+                    <label for="phoneProvider" class="label" style="margin-right: 7%;color: black;">: מספר טלפון</label>
+                    <input id="phoneProvider" type="tel" class="input text_align unFocused">
                 </div>
-                <button class="btn btn-block invisibleRow" disabled></button>
-                <button class="btn btn-block invisibleRow" disabled></button>
                 <button class="btn btn-block invisibleRow" disabled></button>
                 <button class="btn btn-block invisibleRow" disabled></button>
                 <div class="group" id="sendDataProv">

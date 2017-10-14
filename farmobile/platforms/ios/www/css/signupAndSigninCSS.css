@@ -1,12 +1,11 @@
+/*body{
+	background: url(../img/back.jpg) no-repeat center;
+	width: 100%;
+}*/
+
 html{
-    margin:0;
-    color:#6a6f8c;
-    background:#c8c8c8;
-    font:600 16px/18px 'Felix007', serif;
-    font-size: 25px;
-    background: url(../img/back.jpg) no-repeat center;
-    background-size: contain;
-    background-position-y: bottom;
+    background: url(../img/back.jpg) no-repeat fixed;
+    background-size: 115%;
 }
 
 #upperButton{
@@ -32,7 +31,7 @@ a{
     width:100%;
     margin:auto;
     max-width:80%;
-    min-height: 500px;
+    min-height: 460px;
     position:relative;
     box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
 }
@@ -51,8 +50,7 @@ a{
     right:0;
     bottom:0;
     position:absolute;
-    -webkit-transform:rotateY(90deg);
-    transform:rotateY(90deg);
+     -webkit-transform:rotateY(90deg);
     -webkit-backface-visibility:hidden;
     backface-visibility:hidden;
     -webkit-transition:all .4s linear;
@@ -97,6 +95,7 @@ a{
 .login-form .group .input,
 .login-form .group .button{
     width:130%;
+    height: 100%;
     color:#333;
     display:block;
     font-size: 20px;
@@ -106,7 +105,7 @@ a{
 .login-form .group .button{
     border:none;
     padding:15px 20px;
-    border-radius:25px;
+    border-radius:4px;
     background: rgba(208, 201, 201, 0.48);
 }
 .login-form .group input[data-type="password"]{
@@ -120,7 +119,10 @@ a{
     padding-left: 45%;
 }
 .login-form .group .button{
-    background:#1161ee;
+    width: 130%;
+    background: rgba(8, 8, 8, 0.7);
+    box-shadow: 4px 4px 4px #888888;
+    line-height: normal;
 }
 .login-form .group label .icon{
     width:15px;
@@ -197,7 +199,10 @@ a{
 }
 
 #FBpic{
-    margin-left: -20%;
+    margin-left: -30%;
+    width: 130%;
+    border-radius: 4px;
+    box-shadow: 4px 4px 4px #888888;
 }
 
 .button:focus {

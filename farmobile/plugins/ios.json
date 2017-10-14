@@ -9,13 +9,13 @@
     "installed_plugins": {
         "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "com.phonegap.Farmobile"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.phonegap.Farmobile"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-compat": {
-            "PACKAGE_NAME": "com.phonegap.Farmobile"
-        },
-        "cordova-plugin-file": {
             "PACKAGE_NAME": "com.phonegap.Farmobile"
         }
     }
